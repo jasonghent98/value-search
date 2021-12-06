@@ -1,0 +1,21 @@
+.nav-text {
+    margin-left: 0;
+    margin-right: 0;
+    color:  #2F9599 !important;
+}
+
+.nav-background {
+    min-width: 500px;
+    max-width: 100%;
+    background-color: white !important;
+    border-bottom: 3px solid  #2F9599 !important;
+}
+
+#title-name {
+    margin-left: 0;
+}
+
+h1 {
+    font-size: 32px;
+}
+

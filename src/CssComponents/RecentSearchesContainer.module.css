@@ -1,0 +1,13 @@
+.card {
+    min-width: 50rem;
+    margin-top: 0%;
+    height: 300%;
+    background-color: lightgray;
+    box-shadow: 2px 2px 3px 1px lightgray; ;
+}
+
+.title {
+    display: grid;
+    margin-top: 10% !important;
+    text-align: center;
+}
