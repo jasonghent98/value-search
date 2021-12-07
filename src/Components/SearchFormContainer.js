@@ -16,7 +16,9 @@ const SearchFormContainer = props => {
                     className={`mb-2 ${classes['input1']}`} 
                     id="inlineFormInput"
                     placeholder="Job Title"
+                    value={props.jobTitleInput}
                     onChange={props.onChangeJob}
+                
                 />
                 </Col>
                 <Col xs="auto">
@@ -28,7 +30,8 @@ const SearchFormContainer = props => {
                 <FormControl id="inlineFormInputGroup"
                 placeholder="Values/Keywords"
                 onChange={props.onChangeValue}
-                className={`mb-2 ${classes['input2']}`}  
+                className={`mb-2 ${classes['input2']}`}
+                value={props.valueInput}  
                 />
                 </InputGroup>
                 </Col>

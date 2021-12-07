@@ -9,15 +9,13 @@ const App =  props => {
 
 const [jobTitleInput, setJobTitleInput] = useState('');
 const [valueInput, setValueInput] = useState('');
-const [formInput, setFormInput] = useState({});
 const [isFormValid, setIsFormValid] = useState(true);
 
 // function that listens for changes in the the job input and when the 
 // user clicks search, log those changes to the console.
 
 const onJobTitleChange = event => {
-  const jobTitleInput = event.target.value;
-  setJobTitleInput(jobTitleInput);
+  setJobTitleInput(event.target.value);
   console.log(jobTitleInput);
 }
 
@@ -46,8 +44,9 @@ const onSubmitHandler = event => {
     jobTitleInput: jobTitleInput,
     valueInput: valueInput
   }
-  setFormInput(finalizedInput);
-  console.log(formInput);
+  console.log(finalizedInput);
+  setJobTitleInput('');
+  setValueInput('');
   
 }
 
