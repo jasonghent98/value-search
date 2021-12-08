@@ -18,7 +18,6 @@ const SearchFormContainer = props => {
                     placeholder="Job Title"
                     value={props.resetJob}
                     onChange={props.onChangeJob}
-                
                 />
                 </Col>
                 <Col xs="auto">

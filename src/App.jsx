@@ -5,6 +5,8 @@ import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // import AlertDismissibleExample from './UI/Error';
+import firebase from './Firebase';
+
 
 const App =  props => {
 
@@ -17,6 +19,8 @@ const [isValueValid, setIsValueValid] = useState(false);
 
 // function that listens for changes in the the job input and when the 
 // user clicks search, log those changes to the console.
+
+
 
 const onJobTitleChange = event => {
   setJobTitleInput(event.target.value);
