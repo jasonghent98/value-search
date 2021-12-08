@@ -3,13 +3,17 @@ import './App.css';
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
+import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // import AlertDismissibleExample from './UI/Error';
 
 const App =  props => {
 
 const [jobTitleInput, setJobTitleInput] = useState('');
+const [jobInputTouched, setJobInputTouched] = useState(false);
 const [valueInput, setValueInput] = useState('');
-const [isFormValid, setIsFormValid] = useState(false);
+const [valueInputTouched, setValueInputTouched] = useState(false);
+const [isJobValid, setIsJobValid] = useState(false);
+const [isValueValid, setIsValueValid] = useState(false);
 
 // function that listens for changes in the the job input and when the 
 // user clicks search, log those changes to the console.
@@ -34,23 +38,37 @@ console.log(valueInput);
 
 const onSubmitHandler = event => {
   event.preventDefault();
-  if (!jobTitleInput || !valueInput) {
-    console.log('invalid')
-    setIsFormValid(false);
+  setJobInputTouched(true);
+  setValueInputTouched(true);
+
+  if (jobTitleInput.trim() === '') {
+    setIsJobValid(false);
+    return;
+  }
+  if (valueInput.trim() === '') {
+    setIsValueValid(false);
     return;
   }
   const finalizedInput = {
     jobTitleInput: jobTitleInput,
     valueInput: valueInput
   }
-  setIsFormValid(true);
+
+  setIsJobValid(true)
+  setIsValueValid(true)
   console.log(finalizedInput);
   setJobTitleInput('');
   setValueInput('');
+
 }
 
+  const notValidJobInput = !jobTitleInput && jobInputTouched
+  const notValidValueInput = !valueInput && valueInputTouched
+
+  const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
+ 
   return (
-    <div>
+    <div className={classes[inputClasses]}>
       <Header />
       <SearchFormContainer 
       onChangeJob={onJobTitleChange} 
@@ -58,7 +76,7 @@ const onSubmitHandler = event => {
       onSubmit={onSubmitHandler} 
       resetJob={jobTitleInput} 
       resetValue={valueInput}/>
-      {isFormValid ? <p>Both fields must be required!</p> : ''}
+      {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
       <RecentSearchesContainer/>
     </div>
   );
