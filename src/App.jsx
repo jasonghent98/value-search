@@ -3,13 +3,13 @@ import './App.css';
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
-import AlertDismissibleExample from './UI/Error';
+// import AlertDismissibleExample from './UI/Error';
 
 const App =  props => {
 
 const [jobTitleInput, setJobTitleInput] = useState('');
 const [valueInput, setValueInput] = useState('');
-const [isFormValid, setIsFormValid] = useState(true);
+const [isFormValid, setIsFormValid] = useState(false);
 
 // function that listens for changes in the the job input and when the 
 // user clicks search, log those changes to the console.
@@ -39,22 +39,26 @@ const onSubmitHandler = event => {
     setIsFormValid(false);
     return;
   }
-  setIsFormValid(true);
   const finalizedInput = {
     jobTitleInput: jobTitleInput,
     valueInput: valueInput
   }
+  setIsFormValid(true);
   console.log(finalizedInput);
   setJobTitleInput('');
   setValueInput('');
-  
 }
 
   return (
     <div>
       <Header />
-      <SearchFormContainer onChangeJob={onJobTitleChange} onChangeValue={onValueChange} onSubmit={onSubmitHandler}/>
-      {!isFormValid ? AlertDismissibleExample : ''}
+      <SearchFormContainer 
+      onChangeJob={onJobTitleChange} 
+      onChangeValue={onValueChange} 
+      onSubmit={onSubmitHandler} 
+      resetJob={jobTitleInput} 
+      resetValue={valueInput}/>
+      {isFormValid ? <p>Both fields must be required!</p> : ''}
       <RecentSearchesContainer/>
     </div>
   );
