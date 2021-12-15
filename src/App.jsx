@@ -49,7 +49,6 @@ console.log(event.target.value);
 
 // when user submits, create an object out of both of the inputs and push the object onto the 
 // formInput array
-
 const onSubmitHandler = event => {
   event.preventDefault();
   setJobInputTouched(true);
@@ -87,16 +86,18 @@ const onSubmitHandler = event => {
  
   return (
     <div className={classes[inputClasses]}>
-      {isLoggedIn && <Login/>}
-      <Header />
-      <SearchFormContainer 
-      onChangeJob={onJobTitleChange} 
-      onChangeValue={onValueChange} 
-      onSubmit={onSubmitHandler} 
-      resetJob={jobTitleInput} 
-      resetValue={valueInput}/>
-      {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
-      <RecentSearchesContainer userSearches={userSearches}/>
+      {!isLoggedIn ? <Login/> : 
+          <div>
+            <Header />
+            <SearchFormContainer 
+            onChangeJob={onJobTitleChange} 
+            onChangeValue={onValueChange} 
+            onSubmit={onSubmitHandler} 
+            resetJob={jobTitleInput} 
+            resetValue={valueInput}/>
+            {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
+            <RecentSearchesContainer userSearches={userSearches}/>
+          </div>}
     </div>
   );
 }
