@@ -1,13 +1,12 @@
 import React from 'react'
-import { Form, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
-import classes from '../CssComponents/SearchFormContainer.module.css'
+import Header from '../Layout/Header';
+import { Form, Navbar, Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
 
-const SearchFormContainer = props => {
-
-
+const Login = () => {
     return (
-    <div>
-        <Form className={classes['form-search']} onSubmit={props.onSubmit}>
+        <div>
+            <Header/>
+            <Form className={classes['form-search']} onSubmit={props.onSubmit}>
             <Row className="align-items-center">
                 <Col xs="auto">
                 <Form.Label htmlFor="inlineFormInput" visuallyHidden>
@@ -39,9 +38,9 @@ const SearchFormContainer = props => {
                     Search Jobs
                 </Button>   
             </Row>
-        </Form>         
-</div>
+        </Form>  
+        </div>
     )
 }
 
-export default SearchFormContainer;
+export default Login;

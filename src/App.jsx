@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
+import Login from './Components/Login';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // import AlertDismissibleExample from './UI/Error';
-import firebase from './Firebase';
 
+
+import { getUserData, getCompanyData, addData, dummyDataToFirebase } from './Utils/Firebase';
+import dummyData from './Utils/CompanyDataSet';
 
 const App =  props => {
 
@@ -16,26 +19,33 @@ const [valueInput, setValueInput] = useState('');
 const [valueInputTouched, setValueInputTouched] = useState(false);
 const [isJobValid, setIsJobValid] = useState(false);
 const [isValueValid, setIsValueValid] = useState(false);
+const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-// function that listens for changes in the the job input and when the 
-// user clicks search, log those changes to the console.
-
+const [userSearches, setUserSearches] = useState([])
 
 
 const onJobTitleChange = event => {
   setJobTitleInput(event.target.value);
-  console.log(jobTitleInput);
+  console.log(event.target.value);
 }
+
+
+useEffect(() => {
+  // addData();
+  // dummyDataToFirebase();
+  // getCompanyData();
+}, [])
+
 
 
 // function that listens for changes in the the value input and when the 
 // user clicks search, log those changes to the console.
-
 const onValueChange = event => {
 setValueInput(event.target.value);
-console.log(valueInput);
+console.log(event.target.value);
 
 }
+
 
 // when user submits, create an object out of both of the inputs and push the object onto the 
 // formInput array
@@ -58,13 +68,17 @@ const onSubmitHandler = event => {
     valueInput: valueInput
   }
 
+  setUserSearches((prevState) => {
+    return [finalizedInput, ...prevState]
+  })
+  console.log(userSearches);
   setIsJobValid(true)
   setIsValueValid(true)
-  console.log(finalizedInput);
   setJobTitleInput('');
   setValueInput('');
 
 }
+
 
   const notValidJobInput = !jobTitleInput && jobInputTouched
   const notValidValueInput = !valueInput && valueInputTouched
@@ -73,6 +87,7 @@ const onSubmitHandler = event => {
  
   return (
     <div className={classes[inputClasses]}>
+      {isLoggedIn && <Login/>}
       <Header />
       <SearchFormContainer 
       onChangeJob={onJobTitleChange} 
@@ -81,7 +96,7 @@ const onSubmitHandler = event => {
       resetJob={jobTitleInput} 
       resetValue={valueInput}/>
       {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
-      <RecentSearchesContainer/>
+      <RecentSearchesContainer userSearches={userSearches}/>
     </div>
   );
 }
