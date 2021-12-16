@@ -1,0 +1,16 @@
+.login {
+    background-image: url('https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    
+  /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.searches {
+    background-image: none;
+}

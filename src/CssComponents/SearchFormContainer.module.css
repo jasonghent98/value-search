@@ -1,3 +1,7 @@
+body {
+  background-image: none !important;
+}
+
 .button-submit {
     align-content: center;
     width: 500%;

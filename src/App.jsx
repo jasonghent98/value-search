@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import appClasses from './App.module.css';
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
 import Login from './Components/Users/Login';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // import AlertDismissibleExample from './UI/Error';
+
+// Import route object from react-router-dom to enable routing features
+import { Route } from 'react-router-dom';
 
 
 import { getUserData, getCompanyData, addData, dummyDataToFirebase } from './Utils/Firebase';
@@ -86,18 +89,26 @@ const onSubmitHandler = event => {
  
   return (
     <div className={classes[inputClasses]}>
-      {!isLoggedIn ? <Login/> : 
+          <Route path='/login'>
+            <div className={appClasses['login']}>
+            <Login/>  
+            </div>  
+          </Route>
           <div>
-            <Header />
-            <SearchFormContainer 
-            onChangeJob={onJobTitleChange} 
-            onChangeValue={onValueChange} 
-            onSubmit={onSubmitHandler} 
-            resetJob={jobTitleInput} 
-            resetValue={valueInput}/>
-            {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
-            <RecentSearchesContainer userSearches={userSearches}/>
-          </div>}
+            <Route path='/searches' className={appClasses['searches']}>
+              <div className={classes['searches']}>
+              <Header />
+              <SearchFormContainer 
+              onChangeJob={onJobTitleChange} 
+              onChangeValue={onValueChange} 
+              onSubmit={onSubmitHandler} 
+              resetJob={jobTitleInput} 
+              resetValue={valueInput}/>
+              {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
+              <RecentSearchesContainer userSearches={userSearches}/>
+              </div>
+            </Route>
+          </div>
     </div>
   );
 }

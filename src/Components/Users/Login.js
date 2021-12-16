@@ -42,6 +42,7 @@ const Login = props => {
         </Form>  
         <div className={classes['register-text']}>
             New to valueSearch?<br></br><a href="/register">Register here</a>
+            <a href="/searches">Searches</a>
         </div>
         </div>
     )
