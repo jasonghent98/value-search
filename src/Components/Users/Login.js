@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Navbar, Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
-import classes from '../CssComponents/Login.module.css'
+import classes from '../../CssComponents/Login.module.css'
 
 const Login = props => {
     return (
@@ -9,7 +9,7 @@ const Login = props => {
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             <Form className={classes['form-search']} onSubmit={props.onSubmit}>
             <Row className="align-items-center">
-                <Col xs="auto">
+                <Col xs="auto" className={classes['email-input']}>
                     <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                     Email
                     </Form.Label>
@@ -21,7 +21,7 @@ const Login = props => {
                         onChange={props.onChangeJob}
                     />
                 </Col>
-                <Col xs="auto">
+                <Col xs="auto" className={classes['password-input']}>
                     <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
                         Password
                     </Form.Label>
@@ -36,12 +36,12 @@ const Login = props => {
                     </InputGroup>
                 </Col>
                 <Button className={classes['button-submit']} type="submit">
-                    Search Jobs
+                    Login
                 </Button>   
             </Row>
         </Form>  
         <div className={classes['register-text']}>
-            New to valueSearch? <a href="">Register here</a>
+            New to valueSearch?<br></br><a href="/register">Register here</a>
         </div>
         </div>
     )
