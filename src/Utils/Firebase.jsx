@@ -45,7 +45,7 @@ export const getCompanyData = async() => {
   console.log(companyData);
 }
 
-// function that adds data to collection
+// function that adds data to user collection
 export const addData = async () => {
   try {
     const newData = await addDoc(userRef, {
@@ -76,46 +76,16 @@ export const addData = async () => {
 //   console.error(e, 'collection not deleted');
 // })
 
-// const deleteDocs = async() => {
-//   try {
-//     const retrieveDocs = await getDocs(companyRef);
-//     retrieveDocs.docs.forEach(snapshot => {
-//       const selectDoc = doc(companyRef)
-//       console.log(selectDoc)
-      
-//     })
-//     console.log('worked!')
-//   } catch (error) {
-//     console.error(error, 'nope')
-//   }
   
 // }
 // deleteDocs();
 
-// first locate the doc with the doc() method
-const deleteOne = async () => {
-  try {
-    const docRef = doc(companyRef, '86e9cade14e2a972c526db4b7c828ed7')
-    const retrieve = await getDoc(docRef)
-    console.log(retrieve)
-    await deleteDoc(retrieve)
-    if(retrieve.exists()) {
-      console.log('still exists')
-    } else {
-      console.log('it worked!')
-    }
-  } catch (error) {
-    console.error(error, 'nope')
-  }
-}
-// deleteOne()
 
 
 // 2. log to console 
 // 3. clear the collection of company data before the addDoc func is called with a forEach loop
 
-// deleteDoc()
-
+// One time function to send data to collection in firebase
 
 export const dummyDataToFirebase = async() => {
   try {

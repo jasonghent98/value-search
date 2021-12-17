@@ -4,6 +4,7 @@ import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
 import Login from './Components/Users/Login';
+import Register from './Components/Users/Register';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // import AlertDismissibleExample from './UI/Error';
 
@@ -91,8 +92,13 @@ const onSubmitHandler = event => {
     <div className={classes[inputClasses]}>
           <Route path='/login'>
             <div className={appClasses['login']}>
-            <Login/>  
+              <Login/>  
             </div>  
+          </Route>
+          <Route path='/register'> 
+            <div className={appClasses['register']}>
+              <Register/>
+            </div>
           </Route>
           <div>
             <Route path='/searches' className={appClasses['searches']}>

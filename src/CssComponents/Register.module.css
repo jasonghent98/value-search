@@ -1,0 +1,29 @@
+body {
+    background-color: lightgray;
+}
+.form {
+    background-color: white;
+    margin-top: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 8px;
+    height: 20rem;
+}
+
+.input1 {
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 300%;
+}
+
+.password-input {
+    width: 300%;
+    margin-top: 75%;
+    margin-left: -90%;
+}
+
+.button-submit {
+    margin-left: 25% !important;
+    margin-top: 5% !important;
+    width: 50% !important; 
+}

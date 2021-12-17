@@ -8,44 +8,43 @@ const Login = props => {
             <h2>Welcome Back</h2>
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             <Form className={classes['form-search']} onSubmit={props.onSubmit}>
-            <Row className="align-items-center">
-                <Col xs="auto" className={classes['email-input']}>
-                    <Form.Label htmlFor="inlineFormInput" visuallyHidden>
-                    Email
-                    </Form.Label>
-                    <Form.Control
-                        className={`mb-2 ${classes['input1']}`} 
-                        id="inlineFormInput"
-                        placeholder="Email"
-                        value={props.resetJob}
-                        onChange={props.onChangeJob}
-                    />
-                </Col>
-                <Col xs="auto" className={classes['password-input']}>
-                    <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-                        Password
-                    </Form.Label>
-                    <InputGroup className="mb-2">
+                <Row className="align-items-center">
+                    <Col xs="auto" className={classes['email-input']}>
+                        <Form.Label htmlFor="inlineFormInput" visuallyHidden>
+                        Email
+                        </Form.Label>
+                        <Form.Control
+                            className={`mb-2 ${classes['input1']}`} 
+                            id="inlineFormInput"
+                            placeholder="Email"
+                            value={props.resetJob}
+                            onChange={props.onChangeJob}
+                        />
+                    </Col>
+                    <Col xs="auto" className={classes['password-input']}>
+                        <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+                            Password
+                        </Form.Label>
+                        <InputGroup className="mb-2">
                    
-                    <FormControl id="inlineFormInputGroup"
-                    placeholder="Password"
-                    onChange={props.onChangeValue}
-                    className={`mb-2 ${classes['input2']}`}
-                    value={props.resetValue}  
-                    />
-                    </InputGroup>
-                </Col>
-                <Button className={classes['button-submit']} type="submit">
-                    Login
-                </Button>   
-            </Row>
-        </Form>  
-        <div className={classes['register-text']}>
-            New to valueSearch?<br></br><a href="/register">Register here</a>
-            <a href="/searches">Searches</a>
+                        <FormControl id="inlineFormInputGroup"
+                        placeholder="Password"
+                        onChange={props.onChangeValue}
+                        className={`mb-2 ${classes['input2']}`}
+                        value={props.resetValue}  
+                        />
+                        </InputGroup>
+                    </Col>
+                    <Button className={classes['button-submit']} type="submit">
+                        Login
+                    </Button>   
+                </Row>
+            </Form>  
+            <div className={classes['register-text']}>
+                New to valueSearch?<br></br><a href="/register">Register here</a>
+            </div>
         </div>
-        </div>
-    )
+        )
 }
 
 export default Login;
