@@ -11,19 +11,43 @@ body {
 }
 
 .input1 {
-    margin-top: 5%;
+    /* margin-top: 5%;
     margin-left: 25%;
-    width: 300%;
+    width: 300%; */
+    position: absolute;
+    align-content: center;
+    margin-left: 6.7%;
+    margin-top: 2% ;
+    width: 35.5% ; 
+}
+
+.input2 {
+    /* width: 300%;
+    margin-top: 75%;
+    margin-left: -87%; */
+    position: absolute;
+    margin-left: 6.8% ;
+    margin-top: 75% ;
+    width: 35% ;  
 }
 
 .password-input {
-    width: 300%;
-    margin-top: 75%;
-    margin-left: -90%;
+    position: absolute;
+    align-content: center;
+    min-width: 40%;
+    margin-left: 4%;
+    margin-bottom: 10%;
 }
 
+
 .button-submit {
-    margin-left: 25% !important;
-    margin-top: 5% !important;
-    width: 50% !important; 
+    position: absolute;
+    align-content: center;
+    margin-left: 13% !important;
+    margin-top: 27% !important;
+    width: 25% !important; 
+}
+
+@media all and (max-width: 758px) {
+    
 }

@@ -25,6 +25,10 @@ const [isJobValid, setIsJobValid] = useState(false);
 const [isValueValid, setIsValueValid] = useState(false);
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+// state for register page
+const [emailInput, setEmailInput] = useState('')
+const [passwordInput, setPasswordInput] = useState('')
+
 const [userSearches, setUserSearches] = useState([])
 
 
@@ -49,6 +53,15 @@ setValueInput(event.target.value);
 console.log(event.target.value);
 
 }
+
+// listen handler for /register
+const onRegister = event => {
+  event.preventDefault();
+  console.log(event.target.value);
+  setEmailInput()
+  setPasswordInput()
+}
+
 
 
 // when user submits, create an object out of both of the inputs and push the object onto the 
@@ -97,7 +110,7 @@ const onSubmitHandler = event => {
           </Route>
           <Route path='/register'> 
             <div className={appClasses['register']}>
-              <Register/>
+              <Register onRegister={onRegister}/>
             </div>
           </Route>
           <div>

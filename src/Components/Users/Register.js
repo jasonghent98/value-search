@@ -8,19 +8,22 @@ const Register = (props) => {
              <Form className={classes['form-search']} onSubmit={props.onSubmit}>
                 <Row className="align-items-center">
                     <Col xs="auto" className={classes['email-input']}>
+                        <div>
                         <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                             Email
                         </Form.Label>
                         <Form.Control
                             className={`mb-2 ${classes['input1']}`} 
                             id="inlineFormInput"
+                            type='email'
                             placeholder="Email"
                             value={props.resetJob}
-                            onChange={props.onChangeJob}
+                            onChange={props.onRegister}
                         />
+                        </div>
                     </Col>
-                    <Col xs="auto">
-                        <div className={classes['password-input']}>
+                    <Col xs="auto" className={classes['password-input']}>
+                        <div>
                         <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
                             Password
                         </Form.Label>
@@ -28,7 +31,8 @@ const Register = (props) => {
                    
                         <FormControl id="inlineFormInputGroup"
                         placeholder="Password"
-                        onChange={props.onChangeValue}
+                        type='password'
+                        onChange={props.onRegister}
                         className={`mb-2 ${classes['input2']}`}
                         value={props.resetValue}  
                         />

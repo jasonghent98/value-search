@@ -13,12 +13,11 @@ const Login = props => {
                         <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                         Email
                         </Form.Label>
-                        <Form.Control
-                            className={`mb-2 ${classes['input1']}`} 
-                            id="inlineFormInput"
+                        <Form.Control id="inlineFormInput"
                             placeholder="Email"
-                            value={props.resetJob}
                             onChange={props.onChangeJob}
+                            className={`mb-2 ${classes['input1']}`} 
+                            value={props.resetJob}
                         />
                     </Col>
                     <Col xs="auto" className={classes['password-input']}>
