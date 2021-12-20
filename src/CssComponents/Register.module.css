@@ -1,14 +1,23 @@
 body {
     background-color: lightgray;
 }
+
+.login-link {
+    margin-top: 26%;
+    margin-left: 12%;
+}
+
 .form {
     background-color: white;
-    margin-top: 15%;
+    margin-top: 5%;
+    margin-bottom: 40%;
     margin-left: 25%;
     margin-right: 25%;
     border-radius: 8px;
-    height: 20rem;
+    height: 22rem;
+    overflow: hidden;
 }
+
 
 .input1 {
     /* margin-top: 5%;
@@ -27,16 +36,17 @@ body {
     margin-left: -87%; */
     position: absolute;
     margin-left: 6.8% ;
-    margin-top: 75% ;
+    margin-top: 10% ;
     width: 35% ;  
 }
+
 
 .password-input {
     position: absolute;
     align-content: center;
     min-width: 40%;
     margin-left: 4%;
-    margin-bottom: 10%;
+    margin-bottom: 25%;
 }
 
 
@@ -44,9 +54,11 @@ body {
     position: absolute;
     align-content: center;
     margin-left: 13% !important;
-    margin-top: 27% !important;
+    margin-top: 18% !important;
     width: 25% !important; 
 }
+
+
 
 @media all and (max-width: 758px) {
     

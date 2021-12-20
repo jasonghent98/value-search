@@ -37,6 +37,15 @@ const onJobTitleChange = event => {
   console.log(event.target.value);
 }
 
+// register form input handlers that will be passed to onRegister function
+const emailChangeHanlder = event => {
+  setEmailInput(event.target.value);
+}
+
+const passwordChangeHandler = event => {
+  setPasswordInput(event.target.value);
+}
+
 
 useEffect(() => {
   // addData();
@@ -57,9 +66,11 @@ console.log(event.target.value);
 // listen handler for /register
 const onRegister = event => {
   event.preventDefault();
-  console.log(event.target.value);
-  setEmailInput()
-  setPasswordInput()
+  const newUser = {
+    email: emailInput,
+    password: passwordInput
+  }
+  console.log(newUser);
 }
 
 
@@ -110,7 +121,10 @@ const onSubmitHandler = event => {
           </Route>
           <Route path='/register'> 
             <div className={appClasses['register']}>
-              <Register onRegister={onRegister}/>
+              <Register 
+              onRegister={onRegister} 
+              onEmailChange={emailChangeHanlder} 
+              onPasswordChange={passwordChangeHandler}/>
             </div>
           </Route>
           <div>

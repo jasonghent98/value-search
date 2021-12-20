@@ -1,49 +1,39 @@
 import React from 'react'
-import { Form, Col, Row, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, Col, Row, InputGroup, FormControl, Button, NavLink } from 'react-bootstrap';
 import classes from '../../CssComponents/Register.module.css'
 
 const Register = (props) => {
     return (
         <div className={classes['form']}>
-             <Form className={classes['form-search']} onSubmit={props.onSubmit}>
-                <Row className="align-items-center">
-                    <Col xs="auto" className={classes['email-input']}>
-                        <div>
-                        <Form.Label htmlFor="inlineFormInput" visuallyHidden>
-                            Email
-                        </Form.Label>
-                        <Form.Control
-                            className={`mb-2 ${classes['input1']}`} 
-                            id="inlineFormInput"
-                            type='email'
-                            placeholder="Email"
-                            value={props.resetJob}
-                            onChange={props.onRegister}
-                        />
-                        </div>
-                    </Col>
-                    <Col xs="auto" className={classes['password-input']}>
-                        <div>
-                        <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-                            Password
-                        </Form.Label>
-                        <InputGroup className="mb-2">
-                   
-                        <FormControl id="inlineFormInputGroup"
-                        placeholder="Password"
-                        type='password'
-                        onChange={props.onRegister}
-                        className={`mb-2 ${classes['input2']}`}
-                        value={props.resetValue}  
-                        />
-                        </InputGroup>
-                        </div>
-                    </Col>
-                    <Button className={classes['button-submit']} type="submit">
-                        Register
-                    </Button>   
-                </Row>
-            </Form>  
+            <Form onSubmit={props.onRegister}>
+            <Form.Group className={`mb-3 ${classes['input1']}`} controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control 
+                type="email" 
+                placeholder="Enter email" 
+                value={props.emailInput}
+                onChange={props.onEmailChange} />
+                <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+
+            <Form.Group className={`mb-3 ${classes['input2']}`}  controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                value={props.passwordInput}
+                onChange={props.onPasswordChange} />
+            </Form.Group>
+            <Button className={classes['button-submit']} variant="primary" type="submit">
+                Register 
+            </Button>
+            <div className={classes['link-login']}>
+                <a>Have an account</a>
+            </div>
+            <NavLink className={classes['login-link']} href="/login">Already have an account? Login here</NavLink>
+            </Form>
         </div>
     )
 }
