@@ -71,13 +71,15 @@ const onRegister = event => {
     password: passwordInput
   }
   console.log(newUser);
+  setEmailInput('')
+  setPasswordInput('')
 }
 
 
 
 // when user submits, create an object out of both of the inputs and push the object onto the 
 // formInput array
-const onSubmitHandler = event => {
+const onSearchHandler = event => {
   event.preventDefault();
   setJobInputTouched(true);
   setValueInputTouched(true);
@@ -124,7 +126,9 @@ const onSubmitHandler = event => {
               <Register 
               onRegister={onRegister} 
               onEmailChange={emailChangeHanlder} 
-              onPasswordChange={passwordChangeHandler}/>
+              onPasswordChange={passwordChangeHandler}
+              resetPassword={passwordInput}
+              resetEmail={emailInput}/>
             </div>
           </Route>
           <div>
@@ -134,7 +138,7 @@ const onSubmitHandler = event => {
               <SearchFormContainer 
               onChangeJob={onJobTitleChange} 
               onChangeValue={onValueChange} 
-              onSubmit={onSubmitHandler} 
+              onSubmit={onSearchHandler} 
               resetJob={jobTitleInput} 
               resetValue={valueInput}/>
               {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
