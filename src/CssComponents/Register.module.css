@@ -7,57 +7,53 @@ body {
     src: url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 }
 
-.login-link {
-    margin-top: 20%;
-    margin-left: 15%;
-}
-
-
+/* 
 .firstname {
     display: inline-block;
     width: 25%;
     margin-left: 17%;
     margin-top: 2%;
-}
+} */
 
-.lastname {
+/* .lastname {
     display: inline-block;
     width: 25%;
     margin-left: 15%;
-}
+} */
 
-.emailaddress {
+/* .emailaddress { */
     /* margin-top: 5%;
     margin-left: 25%;
     width: 300%; */
-    position: absolute;
-    align-content: center;
+    /* position: absolute; */
+    /* align-content: center;
     margin-left: 10%;
     margin-top: 0% ;
     width: 39% ; 
-}
+} */
 
-.password {
+/* .password {
     /* width: 300%;
     margin-top: 75%;
     margin-left: -87%; */
-    position: absolute;
-    margin-left: 10% ;
+    /* position: absolute; */
+    /* margin-left: 10% ;
     margin-top: 7% ;
-    width: 39% ;  
-}
+    width: 39% ;   */
+/* } */
 
 
-.password-input {
+
+/* .password-input {
     position: absolute;
     align-content: center;
     min-width: 40%;
     margin-left: 4%;
     margin-bottom: 25%;
-}
+} */
 
 
-.button-submit {
+/* .button-submit {
     position: absolute;
     background-color: #fd9b3f !important;
     border: none;
@@ -65,14 +61,14 @@ body {
     margin-left: 17% !important;
     margin-top: 15% !important;
     width: 25% !important; 
-}
+} */
 
-.button-submit:hover {
+/* .button-submit:hover {
     transition: all 200ms ease-in-out;
     cursor: pointer;
     background-color: #f58800 !important;
-}
-
+} */
+/* 
 div h2 {
     color: #f59928;
     font-size: 35px;
@@ -80,34 +76,48 @@ div h2 {
     font-weight: bold;
     margin-top: 3%;
     margin-right: 75%;
-}
+} */
 
-.form {
+.card {
     background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     box-shadow: 1px 1px 8px rgb(97, 90, 90);
-    margin-top: 10%;
+    margin-top: 3%;
     margin-bottom: 40%;
     margin-left: 20%;
     margin-right: 25%;
     border-radius: 8px;
-    height: 25rem;
+    height: 33rem;
     width: 60%;
     align-content: center;
     overflow: hidden;
 }
 
+.form {
+    margin-left: 20%;
+    margin-right: 45%;
+    align-content: center;
+}
+
 
 .firstname {
     display: inline-block;
+    position: absolute;
     width: 25%;
-    margin-left: 17%;
+    margin-left: 0%;
     margin-top: 2%;
 }
 
 .lastname {
     display: inline-block;
+    position: absolute;
     width: 25%;
-    margin-left: 15%;
+    margin-top: 3%;
+    margin-left: 35%;
 }
 
 .emailaddress {
@@ -116,9 +126,9 @@ div h2 {
     width: 300%; */
     position: absolute;
     align-content: center;
-    margin-left: 10%;
-    margin-top: 0% ;
-    width: 39% ; 
+    margin-left: 0%;
+    margin-top: 14% ;
+    width: 60% ; 
 }
 
 .password {
@@ -127,19 +137,24 @@ div h2 {
     margin-left: -87%; */
     position: absolute;
     align-content: center;
-    margin-left: 10% ;
-    margin-top: 7% ;
-    width: 39% ;  
+    width: 60% ;  
+    margin-top: 27% ;
 }
 
+.confirm-password {
+    position: absolute;
+    align-content: center;
+    width: 60% ;
+    margin-top: 38% ;
+}
 
-.password-input {
+/* .password-input {
     position: absolute;
     align-content: center;
     min-width: 40%;
     margin-left: 4%;
-    margin-bottom: 25%;
-}
+    margin-top: 14%;
+} */
 
 
 .button-submit {
@@ -147,9 +162,10 @@ div h2 {
     background-color: #fd9b3f !important;
     border: none;
     align-content: center;
-    margin-left: 17% !important;
-    margin-top: 15% !important;
-    width: 25% !important; 
+    margin-left: 5% !important;
+    margin-top: 55% !important;
+    margin-bottom: 45%;
+    width: 50% !important; 
 }
 
 .button-submit:hover {
@@ -157,6 +173,7 @@ div h2 {
     cursor: pointer;
     background-color: #f58800 !important;
 }
+
 
 div h2 {
     color: #f59928;
@@ -167,8 +184,37 @@ div h2 {
     margin-right: 75%;
 }
 
+.login-link {
+    margin-bottom: 0%;
+    margin-left: 15%;
+}
+
 @media all and (max-width: 758px) {
+    .card {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        background-color: white;
+        box-shadow: 1px 1px 8px rgb(97, 90, 90);
+        margin-top: 3%;
+        margin-bottom: 40%;
+        margin-left: 20%;
+        margin-right: 25%;
+        border-radius: 8px;
+        height: 33rem;
+        width: 60%;
+        align-content: center;
+        position: relative;
+        overflow: hidden;
+        
+    }
+
+    .form {
+        
+    }
+
     .login-link {
+        position: absolute;
         margin-top: 30%;
         margin-left: 15%;
     }
@@ -192,6 +238,7 @@ div h2 {
         margin-left: 25%;
         width: 300%; */
         position: absolute;
+        display: block;
         align-content: center;
         margin-left: 10%;
         margin-top: 0% ;
@@ -206,6 +253,10 @@ div h2 {
         margin-left: 10% ;
         margin-top: 20% ;
         width: 39% ;  
+    }
+
+    .confirm-password {
+
     }
     
     
@@ -242,21 +293,6 @@ div h2 {
         margin-top: 3%;
         margin-right: 75%;
     }
-    
-    .form {
-        background-color: white;
-        box-shadow: 1px 1px 8px rgb(97, 90, 90);
-        margin-top: 10%;
-        margin-bottom: 40%;
-        margin-left: 20%;
-        margin-right: 25%;
-        border-radius: 8px;
-        height: 25rem;
-        width: 60%;
-        align-content: center;
-        overflow: hidden;
-    }
-    
     
     .firstname {
         display: inline-block;

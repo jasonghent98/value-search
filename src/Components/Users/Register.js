@@ -8,8 +8,8 @@ const Register = (props) => {
             <div>
                 <h2>ValueSearch</h2>
             </div>
-            <div className={classes['form']}>
-            <Form onSubmit={props.onRegister}>
+            <div className={classes['card']}>
+            <Form onSubmit={props.onRegister} className={classes['form']}>
                 <div className={classes['first-last']}>
                 <Form.Group className={`mb-3 ${classes['firstname']}`}  controlId="formBasicPassword">
                 <Form.Label>First Name</Form.Label>
@@ -39,9 +39,16 @@ const Register = (props) => {
                 We'll never share your email with anyone else.
                 </Form.Text>
             </Form.Group>
-
             <Form.Group className={`mb-3 ${classes['password']}`}  controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
+                <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                value={props.resetPassword}
+                onChange={props.onPasswordChange} />
+            </Form.Group>
+            <Form.Group className={`mb-3 ${classes['confirm-password']}`}  controlId="formBasicPassword">
+                <Form.Label>Confirm Password</Form.Label>
                 <Form.Control 
                 type="password" 
                 placeholder="Password" 
@@ -51,12 +58,11 @@ const Register = (props) => {
             <Button className={classes['button-submit']} variant="primary" type="submit">
                 Register 
             </Button>
-            <div className={classes['link-login']}>
-            </div>
+            <div className={classes['link-login']}></div>
             <NavLink className={classes['login-link']} href="/login">Already have an account? Login here</NavLink>
             </Form>
+            </div>
         </div>
-    </div>
     )
 }
 
