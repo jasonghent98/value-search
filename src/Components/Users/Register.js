@@ -1,9 +1,10 @@
 import React, {useState, useRef} from 'react'
 import { Form, Col, Row, InputGroup, FormControl, Button, NavLink, Alert } from 'react-bootstrap';
 import classes from '../../CssComponents/Register.module.css'
+import { Link, useHistory } from 'react-router-dom';
 
 // import signup functionality to pass in to onSubmit handler 
-import {useAuth,  AuthProvider} from '../../Contexts/AuthContext'
+import { useAuth,  AuthProvider } from '../../Contexts/AuthContext'
 
 const Register = (props) => {  
     // state for listening to input fields
@@ -20,6 +21,9 @@ const Register = (props) => {
     // pull signUp function from the useAuth export
     const { signUp } = useAuth();
 
+    // useHistory hook to redirect after register
+    const history = useHistory();
+
     // listen handler for /register
     const onRegister = async (event) => {
         event.preventDefault();
@@ -32,11 +36,9 @@ const Register = (props) => {
         }
         try {
             setError('')
-            console.log(event.target)
-            console.log(email.current.value)
-            console.log(password.current.value)
             setIsLoading(true);
             const currentUser = await signUp(email.current.value, password.current.value)
+            history.push('/searches')
             console.log(currentUser);
         } catch (error) {
             setError('Failed to create an account');
@@ -88,7 +90,7 @@ const Register = (props) => {
                     Register 
                 </Button>
             <div className={classes['link-login']}></div>
-            <NavLink className={classes['login-link']} href="/login">Already have an account? Login here</NavLink>
+            <Link to='/login'>Already have an account? Login here</Link>
             </Form>
             </div>
         </div>

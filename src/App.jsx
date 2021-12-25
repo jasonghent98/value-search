@@ -26,7 +26,6 @@ const [valueInput, setValueInput] = useState('');
 const [valueInputTouched, setValueInputTouched] = useState(false);
 const [isJobValid, setIsJobValid] = useState(false);
 const [isValueValid, setIsValueValid] = useState(false);
-const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 // state for register page
 // const [emailInput, setEmailInput] = useState('')
