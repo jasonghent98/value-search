@@ -1,12 +1,14 @@
 
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth'
 import {initializeApp} from 'firebase/app'
 import {getFirestore, collection, getDocs, getDoc
    ,addDoc, writeBatch, deleteDoc, doc, listDocuments, where
   } from 'firebase/firestore'
-import dummyData from './CompanyDataSet';
+import dummyData from '../Utils/CompanyDataSet';
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_KEY,
+    apiKey: "AIzaSyC9hnwjS0wv2vvdpG5PTONHlflv7zUQmq4",
     authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
@@ -16,7 +18,7 @@ const firebaseConfig = {
   };
 
   // initialize app with your config
-  const app = initializeApp(firebaseConfig);
+  export const app = firebase.initializeApp(firebaseConfig);
   // initialize instance of firestore db. db connection
   const db = getFirestore(app);
 
@@ -59,33 +61,6 @@ export const addData = async () => {
   
 }
 
-// batch all of docs and forEach doc, add the doc to the company collection
-// func that will loop over dummy data and place in 
-// company collection 
-
-// 1. retrieve the entire collection
-// getDocs(companyRef)
-// .then(querySnapshot => {
-//   querySnapshot.docs.forEach(snapshot => {
-//   const selectDoc = doc(companyRef)
-//   deleteDoc(selectDoc);
-//   })
-//   console.log('successfully deleted collection!')
-// })
-// .catch((e) => {
-//   console.error(e, 'collection not deleted');
-// })
-
-  
-// }
-// deleteDocs();
-
-
-
-// 2. log to console 
-// 3. clear the collection of company data before the addDoc func is called with a forEach loop
-
-// One time function to send data to collection in firebase
 
 export const dummyDataToFirebase = async() => {
   try {
@@ -102,6 +77,11 @@ export const dummyDataToFirebase = async() => {
   }
   
 }
+
+// FIREBASE AUTH
+
+export const auth = firebase.auth()
+
 
 
 

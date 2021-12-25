@@ -11,8 +11,11 @@ import classes from '../src/CssComponents/SearchFormContainer.module.css';
 // Import route object from react-router-dom to enable routing features
 import { Route } from 'react-router-dom';
 
+// Import Auth Provider to provide access to global context for authorization
+import { AuthProvider } from './Contexts/AuthContext';
 
-import { getUserData, getCompanyData, addData, dummyDataToFirebase } from './Utils/Firebase';
+
+import { getUserData, getCompanyData, addData, dummyDataToFirebase } from './API/Firebase';
 import dummyData from './Utils/CompanyDataSet';
 
 const App =  props => {
@@ -26,8 +29,8 @@ const [isValueValid, setIsValueValid] = useState(false);
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 // state for register page
-const [emailInput, setEmailInput] = useState('')
-const [passwordInput, setPasswordInput] = useState('')
+// const [emailInput, setEmailInput] = useState('')
+// const [passwordInput, setPasswordInput] = useState('')
 
 const [userSearches, setUserSearches] = useState([])
 
@@ -38,13 +41,13 @@ const onJobTitleChange = event => {
 }
 
 // register form input handlers that will be passed to onRegister function
-const emailChangeHanlder = event => {
-  setEmailInput(event.target.value);
-}
+// const emailChangeHanlder = event => {
+//   setEmailInput(event.target.value);
+// }
 
-const passwordChangeHandler = event => {
-  setPasswordInput(event.target.value);
-}
+// const passwordChangeHandler = event => {
+//   setPasswordInput(event.target.value);
+// }
 
 
 useEffect(() => {
@@ -62,19 +65,6 @@ setValueInput(event.target.value);
 console.log(event.target.value);
 
 }
-
-// listen handler for /register
-const onRegister = event => {
-  event.preventDefault();
-  const newUser = {
-    email: emailInput,
-    password: passwordInput
-  }
-  console.log(newUser);
-  setEmailInput('')
-  setPasswordInput('')
-}
-
 
 
 // when user submits, create an object out of both of the inputs and push the object onto the 
@@ -115,6 +105,7 @@ const onSearchHandler = event => {
   const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
  
   return (
+    <AuthProvider>
     <div className={classes[inputClasses]}>
           <Route path='/login'>
             <div className={appClasses['login']}>
@@ -123,12 +114,7 @@ const onSearchHandler = event => {
           </Route>
           <Route path='/register'> 
             <div className={appClasses['register']}>
-              <Register 
-              onRegister={onRegister} 
-              onEmailChange={emailChangeHanlder} 
-              onPasswordChange={passwordChangeHandler}
-              resetPassword={passwordInput}
-              resetEmail={emailInput}/>
+              <Register/>
             </div>
           </Route>
           <div>
@@ -147,6 +133,7 @@ const onSearchHandler = event => {
             </Route>
           </div>
     </div>
+    </AuthProvider>
   );
 }
 

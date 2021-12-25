@@ -1,39 +1,66 @@
-import React from 'react'
-import { Form, Col, Row, InputGroup, FormControl, Button, NavLink } from 'react-bootstrap';
+import React, {useState, useRef} from 'react'
+import { Form, Col, Row, InputGroup, FormControl, Button, NavLink, Alert } from 'react-bootstrap';
 import classes from '../../CssComponents/Register.module.css'
 
-const Register = (props) => {
+// import signup functionality to pass in to onSubmit handler 
+import {useAuth,  AuthProvider} from '../../Contexts/AuthContext'
+
+const Register = (props) => {  
+    // state for listening to input fields
+    
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
+    // const [confirmPassword, setConfirmPassword] = useState('')
+    const email = useRef();
+    const password = useRef();
+    const confirmPassword = useRef();
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    // pull signUp function from the useAuth export
+    const { signUp } = useAuth();
+
+    // listen handler for /register
+    const onRegister = async (event) => {
+        event.preventDefault();
+        // setEmail(event.target.value)
+        // setPassword(event.target.value)
+        // setConfirmPassword(event.target.value)
+
+        if (password.current.value !== confirmPassword.current.value) {
+            return setError('Passwords do not match!')
+        }
+        try {
+            setError('')
+            console.log(event.target)
+            console.log(email.current.value)
+            console.log(password.current.value)
+            setIsLoading(true);
+            const currentUser = await signUp(email.current.value, password.current.value)
+            console.log(currentUser);
+        } catch (error) {
+            setError('Failed to create an account');
+            console.log(error)
+        }
+
+    setIsLoading(false);
+  }
+
     return (
         <div>
             <div>
                 <h2>ValueSearch</h2>
             </div>
             <div className={classes['card']}>
-            <Form onSubmit={props.onRegister} className={classes['form']}>
-                <div className={classes['first-last']}>
-                <Form.Group className={`mb-3 ${classes['firstname']}`}  controlId="formBasicPassword">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control 
-                type="password" 
-                placeholder="First Name" 
-                value={props.resetPassword}
-                onChange={props.onPasswordChange} />
-            </Form.Group>
-            <Form.Group className={`mb-3 ${classes['lastname']}`}  controlId="formBasicPassword">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control 
-                type="password" 
-                placeholder="Last Name" 
-                value={props.resetPassword}
-                onChange={props.onPasswordChange} />
-            </Form.Group>
-            </div>
+            {error && <Alert variant='danger'>{error}</Alert>}
+            <Form onSubmit={onRegister} className={classes['form']}>
             <Form.Group className={`mb-3 ${classes['emailaddress']}`} controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control 
+                className={classes['email-input']}
                 type="email" 
+                ref={email}
                 placeholder="Enter email" 
-                value={props.resetEmail}
                 onChange={props.onEmailChange} />
                 <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
@@ -42,22 +69,24 @@ const Register = (props) => {
             <Form.Group className={`mb-3 ${classes['password']}`}  controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control 
+                className={classes['pass-input']}
+                ref={password}
                 type="password" 
                 placeholder="Password" 
-                value={props.resetPassword}
                 onChange={props.onPasswordChange} />
             </Form.Group>
-            <Form.Group className={`mb-3 ${classes['confirm-password']}`}  controlId="formBasicPassword">
+            <Form.Group className={`mb-3 ${classes['confirm-password']}`}  controlId="formBasicConfirmPassword">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control 
+                className={classes['conf-pass-input']}
                 type="password" 
+                ref={confirmPassword}
                 placeholder="Password" 
-                value={props.resetPassword}
                 onChange={props.onPasswordChange} />
             </Form.Group>
-            <Button className={classes['button-submit']} variant="primary" type="submit">
-                Register 
-            </Button>
+                <Button disabled={isLoading} className={classes['button-submit']} variant="primary" type="submit">
+                    Register 
+                </Button>
             <div className={classes['link-login']}></div>
             <NavLink className={classes['login-link']} href="/login">Already have an account? Login here</NavLink>
             </Form>
