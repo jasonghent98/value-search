@@ -23,6 +23,8 @@ const SearchFormContainer = props => {
 
     const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
 
+    // function that handles job searches
+
     const onSearchHandler = event => {
         event.preventDefault();
         setJobInputTouched(true);
@@ -52,10 +54,14 @@ const SearchFormContainer = props => {
     
       }
 
+    //   listens for changes in the job position input
+
       const onJobTitleChange = event => {
         setJobTitleInput(event.target.value);
         console.log(event.target.value);
       }
+
+    //   listens for changes in the value input
 
       const onValueChange = event => {
         setValueInput(event.target.value);
@@ -67,7 +73,6 @@ const SearchFormContainer = props => {
     <div>
         <Header/>
         <Form className={classes['form-search']} onSubmit={props.onSubmit}>
-            {console.log(currentUser)}
             <Row className="align-items-center">
             <div className={classes['search-form-input']}>
                 <Col xs="auto">
