@@ -26,24 +26,16 @@ const App =  props => {
 
   const { currentUser } = useAuth();
 
-  const [jobTitleInput, setJobTitleInput] = useState('');
-  const [jobInputTouched, setJobInputTouched] = useState(false);
-  const [valueInput, setValueInput] = useState('');
-  const [valueInputTouched, setValueInputTouched] = useState(false);
-  const [isJobValid, setIsJobValid] = useState(false);
-  const [isValueValid, setIsValueValid] = useState(false);
 
   // state for register page
   // const [emailInput, setEmailInput] = useState('')
   // const [passwordInput, setPasswordInput] = useState('')
 
-  const [userSearches, setUserSearches] = useState([])
 
-
-  const onJobTitleChange = event => {
-    setJobTitleInput(event.target.value);
-    console.log(event.target.value);
-  }
+  // const onJobTitleChange = event => {
+  //   setJobTitleInput(event.target.value);
+  //   console.log(event.target.value);
+  // }
 
   // register form input handlers that will be passed to onRegister function
   // const emailChangeHanlder = event => {
@@ -65,54 +57,56 @@ const App =  props => {
 
   // function that listens for changes in the the value input and when the 
   // user clicks search, log those changes to the console.
-  const onValueChange = event => {
-  setValueInput(event.target.value);
-  console.log(event.target.value);
 
-}
+//   const onValueChange = event => {
+//   setValueInput(event.target.value);
+//   console.log(event.target.value);
+
+// }
 
 
   // when user submits, create an object out of both of the inputs and push the object onto the 
   // formInput array
-  const onSearchHandler = event => {
-    event.preventDefault();
-    setJobInputTouched(true);
-    setValueInputTouched(true);
 
-    if (jobTitleInput.trim() === '') {
-      setIsJobValid(false);
-      return;
-    }
-    if (valueInput.trim() === '') {
-      setIsValueValid(false);
-      return;
-    }
-    const finalizedInput = {
-      jobTitleInput: jobTitleInput,
-      valueInput: valueInput
-    }
+  // const onSearchHandler = event => {
+  //   event.preventDefault();
+  //   setJobInputTouched(true);
+  //   setValueInputTouched(true);
 
-    setUserSearches((prevState) => {
-      return [finalizedInput, ...prevState]
-    })
-    console.log(userSearches);
-    setIsJobValid(true)
-    setIsValueValid(true)
-    setJobTitleInput('');
-    setValueInput('');
+  //   if (jobTitleInput.trim() === '') {
+  //     setIsJobValid(false);
+  //     return;
+  //   }
+  //   if (valueInput.trim() === '') {
+  //     setIsValueValid(false);
+  //     return;
+  //   }
+  //   const finalizedInput = {
+  //     jobTitleInput: jobTitleInput,
+  //     valueInput: valueInput
+  //   }
 
-  }
+  //   setUserSearches((prevState) => {
+  //     return [finalizedInput, ...prevState]
+  //   })
+  //   console.log(userSearches);
+  //   setIsJobValid(true)
+  //   setIsValueValid(true)
+  //   setJobTitleInput('');
+  //   setValueInput('');
+
+  // }
 
 
-  const notValidJobInput = !jobTitleInput && jobInputTouched
-  const notValidValueInput = !valueInput && valueInputTouched
+  // const notValidJobInput = !jobTitleInput && jobInputTouched
+  // const notValidValueInput = !valueInput && valueInputTouched
 
-  const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
+  // const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
  
   return (
     <AuthProvider>
-    {!currentUser && <Home/>}
-    <div className={classes[inputClasses]}>
+
+    <div>
           <Route path='/login'>
             <div className={appClasses['login']}>
               <Login/>  
@@ -125,19 +119,7 @@ const App =  props => {
           </Route>
           <div>
             {/* the code below should be wrapped in a private route component that will only show when the user is authenticated */}
-            <PrivateRoute path='/searches' className={appClasses['searches']}>
-              <div className={classes['searches']}>
-              <Header />
-              <SearchFormContainer 
-              onChangeJob={onJobTitleChange} 
-              onChangeValue={onValueChange} 
-              onSubmit={onSearchHandler} 
-              resetJob={jobTitleInput} 
-              resetValue={valueInput}/>
-              {notValidJobInput || notValidValueInput ? <p className={classes['error-text']}>Both fields must be required!</p> : ''}
-              <RecentSearchesContainer userSearches={userSearches}/>
-              </div>
-            </PrivateRoute>
+            <PrivateRoute path='/searches' className={appClasses['searches']} component={SearchFormContainer}></PrivateRoute>
           </div>
     </div>
     </AuthProvider>

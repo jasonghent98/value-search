@@ -37,7 +37,6 @@ const Login = props => {
 
     return (
         <div>
-            {console.log(currentUser)}
             <h2>Welcome Back</h2>
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             {error && <Alert variant='danger'>{error}</Alert>}

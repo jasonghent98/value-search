@@ -6,7 +6,7 @@ import { auth } from '../API/Firebase';
 import React, { useState } from 'react';
 
 const Header = props => {
-    const { logout } = useAuth();
+    const { logout, currentUser } = useAuth();
     const history = useHistory();
     const [error, setError] = useState();
 
@@ -15,6 +15,7 @@ const Header = props => {
         try {
             await logout();
             history.push('/login');
+            console.log('logout successful', currentUser)
         } catch (error) {
             setError('log out failed.')
             console.log(error);
@@ -23,21 +24,6 @@ const Header = props => {
 
     return (
         <div>
-            {/* <Navbar className={classes['nav-background']} collapseOnSelect expand="lg" bg="light" variant="dark" sticky="top">
-            <Container>
-            <Navbar.Brand href="#home" className={classes['nav-text']}><h1>ValueSearch</h1></Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto"></Nav>
-                <Nav>
-                    <Nav.Link href="/login" className={classes['nav-text']}>My Profile</Nav.Link>
-                </Nav>
-                <Nav>
-                    <Nav.Link href="/login" className={classes['nav-text']}>Logout</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-            </Container>
-            </Navbar> */}
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                 <Navbar.Brand href="#home">ValueSearch</Navbar.Brand>
