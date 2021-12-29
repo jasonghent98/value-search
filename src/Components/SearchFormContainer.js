@@ -2,13 +2,18 @@ import React from 'react'
 import { Form, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 import classes from '../CssComponents/SearchFormContainer.module.css'
 
-const SearchFormContainer = props => {
+// import current user context to be able to display current user email in a welcome alert
+import { useAuth, AuthProvider } from '../Contexts/AuthContext';
 
+const SearchFormContainer = props => {
+    const { currentUser } = useAuth();
 
     return (
     <div>
         <Form className={classes['form-search']} onSubmit={props.onSubmit}>
+
             <Row className="align-items-center">
+            <div className={classes['search-form-input']}>
                 <Col xs="auto">
                 <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                  Position
@@ -23,7 +28,7 @@ const SearchFormContainer = props => {
                 </Col>
                 <Col xs="auto">
                 <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-                    Username
+                Values
                 </Form.Label>
                 <InputGroup className="mb-2">
                    
@@ -35,12 +40,13 @@ const SearchFormContainer = props => {
                 />
                 </InputGroup>
                 </Col>
+            </div>
                 <Button className={classes['button-submit']} type="submit">
                     Search Jobs
                 </Button>   
             </Row>
         </Form>         
-</div>
+    </div>
     )
 }
 

@@ -7,8 +7,8 @@ export const useAuth = () => {
     return useContext(AuthContext)
 }
 
-export const AuthProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState();
+export const AuthProvider = (props) => {
+    const [currentUser, setCurrentUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     const signUp = (email, password) => {
@@ -27,25 +27,36 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const logout = async () => {
+        try {
+            await auth.signOut()
+            console.log(currentUser)
+            return;
+        } catch (error) {
+            console.log(error, 'from authContext.js')
+        }
+    }
+
     useEffect(() => {
-        const unsubscribed = auth.onAuthStateChanged(user => {
-            setCurrentUser(children.user);
-            setIsLoading(false);
+        const observer = auth.onAuthStateChanged(user => {
+            setCurrentUser(user)
+            setIsLoading(false)
         })
-        return unsubscribed;
-    }, [children.user])
+        return observer;
+    }, [])
 
     const value = {
         currentUser,
         setCurrentUser,
         login,
-        signUp
+        signUp,
+        logout
     }
 
 
     return (
         <AuthContext.Provider value={value}>
-            {!isLoading && children}
+            {!isLoading && props.children}
         </AuthContext.Provider>
     )
 }

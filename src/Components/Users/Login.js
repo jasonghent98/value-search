@@ -10,7 +10,7 @@ const Login = props => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const { login } = useAuth();
+    const { login, currentUser } = useAuth();
 
     // input refs
     const email = useRef();
@@ -19,13 +19,12 @@ const Login = props => {
     // useHistory hook to redirect after login
     const history = useHistory();
 
-    const loginHandler = async (event) => {
+     const loginHandler = async (event) => {
         event.preventDefault();
         try {
             setError('')
             setIsLoading(true);
-            const user = await login(email.current.value, password.current.value);
-            console.log(user)
+            await login(email.current.value, password.current.value);
             history.push('/searches')
         } catch (error) {
             setIsLoggedIn(false);
@@ -38,6 +37,7 @@ const Login = props => {
 
     return (
         <div>
+            {console.log(currentUser)}
             <h2>Welcome Back</h2>
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             {error && <Alert variant='danger'>{error}</Alert>}
