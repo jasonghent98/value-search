@@ -10,6 +10,7 @@ export const useAuth = () => {
 export const AuthProvider = (props) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [alert, setAlert] = useState(true);
 
     const signUp = (email, password) => {
         try {
@@ -37,6 +38,10 @@ export const AuthProvider = (props) => {
         }
     }
 
+    const hideAlert = () => {
+        return setAlert(() => !alert);
+    }
+
     useEffect(() => {
         const observer = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -50,7 +55,8 @@ export const AuthProvider = (props) => {
         setCurrentUser,
         login,
         signUp,
-        logout
+        logout,
+        hideAlert
     }
 
 

@@ -37,7 +37,9 @@ const Login = props => {
 
     return (
         <div>
-            <h2>Welcome Back</h2>
+            <div className={classes['header']}>
+                <h2>Welcome Back</h2>
+            </div>
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             {error && <Alert variant='danger'>{error}</Alert>}
             <Form className={classes['form-search']} onSubmit={loginHandler}>

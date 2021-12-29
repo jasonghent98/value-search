@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Form, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
+import { Form, Row, Col, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
 import classes from '../CssComponents/SearchFormContainer.module.css'
 import Header from '../Layout/Header';
 import RecentSearchesContainer from './RecentSearchesContainer';
@@ -9,7 +9,7 @@ import { useAuth, AuthProvider } from '../Contexts/AuthContext';
 
 const SearchFormContainer = props => {
     const [userSearches, setUserSearches] = useState([])
-    const { currentUser } = useAuth();
+    const { currentUser, hideAlert } = useAuth();
 
     const [jobTitleInput, setJobTitleInput] = useState('');
     const [jobInputTouched, setJobInputTouched] = useState(false);
@@ -72,6 +72,8 @@ const SearchFormContainer = props => {
     return (
     <div>
         <Header/>
+        {currentUser && <Alert variant='success' dismissible={true} >Welcome back, {currentUser.email}</Alert>}
+
         <Form className={classes['form-search']} onSubmit={props.onSubmit}>
             <Row className="align-items-center">
             <div className={classes['search-form-input']}>

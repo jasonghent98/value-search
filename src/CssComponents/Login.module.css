@@ -23,8 +23,8 @@ body {
 
 
 h2 {
-    color: white;
-    text-align: center;
+    color: white !important;
+    align-content: center;
     margin-top: 10%;
 }
 
