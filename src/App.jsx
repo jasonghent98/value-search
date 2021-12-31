@@ -34,7 +34,7 @@ const App =  props => {
 
   return (
     <AuthProvider>
-      <div>
+          <Route path='/home'><Home/></Route>
           <Route path='/login'>
             <div className={appClasses['login']}>
               <Login/>  
@@ -49,7 +49,6 @@ const App =  props => {
             {/* the code below should be wrapped in a private route component that will only show when the user is authenticated */}
             <PrivateRoute path='/searches' className={appClasses['searches']} component={SearchFormContainer}></PrivateRoute>
           </div>
-      </div>
     </AuthProvider>
   );
 }

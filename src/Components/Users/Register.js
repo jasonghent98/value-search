@@ -55,42 +55,71 @@ const Register = (props) => {
             </div>
             <div className={classes['card']}>
             {error && <Alert variant='danger'>{error}</Alert>}
+            
             <Form onSubmit={onRegister} className={classes['form']}>
-            <Form.Group className={`mb-3 ${classes['emailaddress']}`} controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control 
-                className={classes['email-input']}
-                type="email" 
-                ref={email}
-                placeholder="Enter email" 
-                onChange={props.onEmailChange} />
-                <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group>
-            <Form.Group className={`mb-3 ${classes['password']}`}  controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control 
-                className={classes['pass-input']}
-                ref={password}
-                type="password" 
-                placeholder="Password" 
-                onChange={props.onPasswordChange} />
-            </Form.Group>
-            <Form.Group className={`mb-3 ${classes['confirm-password']}`}  controlId="formBasicConfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control 
-                className={classes['conf-pass-input']}
-                type="password" 
-                ref={confirmPassword}
-                placeholder="Password" 
-                onChange={props.onPasswordChange} />
-            </Form.Group>
-                <Button disabled={isLoading} className={classes['button-submit']} variant="primary" type="submit">
-                    Register 
-                </Button>
-            <div className={classes['link-login']}></div>
-            <Link to='/login'>Already have an account? Login here</Link>
+                <div className={`mb-3 ${classes['firstname']}`}>
+                <Form.Group controlId="formBasicFirstName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control 
+                    className={classes['email-input']}
+                    type="email" 
+                    ref={email}
+                    placeholder="First Name" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['lastname']}`} >
+                <Form.Group controlId="formBasicLastName">
+                    <Form.Label>Last </Form.Label>
+                    <Form.Control 
+                    className={classes['email-input']}
+                    type="email" 
+                    ref={email}
+                    placeholder="Last Name" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['emailaddress']}`} >
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control 
+                    className={classes['email-input']}
+                    type="email" 
+                    ref={email}
+                    placeholder="Enter email" 
+                    onChange={props.onEmailChange} />
+                    <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['password']}`} >
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                    className={classes['pass-input']}
+                    ref={password}
+                    type="password" 
+                    placeholder="Password" 
+                    onChange={props.onPasswordChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['confirm-password']}`} >
+                <Form.Group controlId="formBasicConfirmPassword">
+                 <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control 
+                    className={classes['conf-pass-input']}
+                    type="password" 
+                    ref={confirmPassword}
+                    placeholder="Password" 
+                    onChange={props.onPasswordChange} />
+                </Form.Group>
+                </div>
+                    <Button disabled={isLoading} className={classes['button-submit']} variant="primary" type="submit">
+                        Register 
+                    </Button>
+                <div className={classes['link-login']}></div>
+                <Link to='/login'>Already have an account? Login here</Link>
             </Form>
             </div>
         </div>

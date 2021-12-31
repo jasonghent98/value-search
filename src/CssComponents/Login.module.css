@@ -3,14 +3,21 @@ html {
 
 }
 body {
-    background-image: url('https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80');
+    background-image: url('https://images.unsplash.com/photo-1640622308113-ca5d7b948515?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
 }
 
+.alert-signout {
+    margin-left: 40%;
+    width: 20%;
+    text-align: center;
+}
+
 .text-input {
-    width: 100% ;
+    justify-content: center;
+    width: 100%;
 }
 
 .card {
@@ -22,10 +29,12 @@ body {
 }
 
 
-h2 {
+span h2 {
     color: white !important;
-    align-content: center;
+
+    justify-content: center;
     margin-top: 10%;
+    margin-left: 45%;
 }
 
 p {

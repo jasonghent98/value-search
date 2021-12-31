@@ -6,6 +6,8 @@ import { Link, useHistory} from 'react-router-dom'
 // Login context 
 import { useAuth } from '../../Contexts/AuthContext';
 
+import { auth } from '../../API/Firebase';
+
 const Login = props => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -35,13 +37,13 @@ const Login = props => {
         console.log('login successful')
     }
 
+
     return (
         <div>
-            <div className={classes['header']}>
-                <h2>Welcome Back</h2>
-            </div>
+            <span className={classes['header']}><h2>Welcome</h2></span>
             <p>Pick up where you left off. Sign in to search for jobs that fit your values.</p>
             {error && <Alert variant='danger'>{error}</Alert>}
+            {!currentUser && <Alert variant='success' className={classes['alert-signout']} dismissible={true}>Logout Successful!</Alert>}
             <Form className={classes['form-search']} onSubmit={loginHandler}>
                 <Row className="align-items-center">
                     <Col xs="auto" className={classes['email-input']}>
