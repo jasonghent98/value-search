@@ -70,7 +70,7 @@ const Register = (props) => {
                 </div>
                 <div className={`mb-3 ${classes['lastname']}`} >
                 <Form.Group controlId="formBasicLastName">
-                    <Form.Label>Last </Form.Label>
+                    <Form.Label>Last Name </Form.Label>
                     <Form.Control 
                     className={classes['email-input']}
                     type="email" 
@@ -115,11 +115,14 @@ const Register = (props) => {
                     onChange={props.onPasswordChange} />
                 </Form.Group>
                 </div>
-                    <Button disabled={isLoading} className={classes['button-submit']} variant="primary" type="submit">
+                <div className={classes['button-submit']}>
+                    <Button className={classes['actual-buttton']} disabled={isLoading} type="submit">
                         Register 
                     </Button>
-                <div className={classes['link-login']}></div>
-                <Link to='/login'>Already have an account? Login here</Link>
+                </div>
+                <div className={classes['login-link']}>
+                    <Link to='/login'>Already have an account? Login here</Link>
+                </div>
             </Form>
             </div>
         </div>

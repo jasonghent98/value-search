@@ -25,19 +25,19 @@ body {
 .form {
     display: grid;
     justify-items: center;
+    align-items: start;
     /* grid-template-columns: repeat(2, 2fr); */
-    row-gap: 3rem;
-    column-gap: 3rem;
+    row-gap: 20%;
+    column-gap: auto;
     grid-auto-rows: minmax(5%, 10%);
+    margin-top: 1%;
     grid-template-areas: 'first last'
                         'email email' 
                         'pass pass' 
-                        'passconf passconf' ;
-}
-
-.form > div {
-    background-color: lightgray;
-    border: teal 2px solid;
+                        'passconf passconf'
+                        'link link'
+                        '. .'
+                        'btn btn' ;
 }
 
 
@@ -45,12 +45,14 @@ body {
     max-width: 100%;
     grid-column: 1/2;
     grid-area: first;
+    margin-left: 20%;
 }
 
 .lastname {
     max-width: 100%;
     grid-column: 1/2;
     grid-area: last;
+    margin-right: 25%;
 }
 
 .emailaddress {
@@ -63,6 +65,7 @@ body {
 .password {
     align-content: center;
     width: 75% ;  
+    margin-top: 0%;
     grid-area: pass;
 
 }
@@ -75,16 +78,14 @@ body {
 
 
 .button-submit {
-    position: absolute;
-    display: block;
+    align-content: center;
+    grid-area: btn;
     background-color: #fd9b3f !important;
     border: none;
-    align-content: center;
-    margin-left: 5% !important;
-    margin-top: 55% !important;
-    margin-bottom: 45%;
+    margin-top: -20%;
     width: 50% !important; 
 }
+
 
 .button-submit:hover {
     transition: all 200ms ease-in-out;
@@ -95,20 +96,22 @@ body {
 
 div h2 {
     color: #f59928;
+    text-align: right;
     font-size: 35px;
     font-family: 'Arvo';
     font-weight: bold;
     margin-top: 3%;
-    margin-right: 50%;
+    margin-right: 43%;
 }
 
 .login-link {
-    margin-top: 40vh;
+    grid-area: link;
     display: inline-block;
+    margin-top: -3%;
     
 }
 
-@media all and (max-width: 758px) {
+@media all and (max-width: 900px) {
     .card {
         display: flex;
         flex-direction: column;
@@ -129,157 +132,91 @@ div h2 {
     }
 
     .form {
+        display: grid;
+        overflow: scroll;
+        justify-items: center;
+        align-items: start;
+        /* grid-template-columns: repeat(2, 2fr); */
+        row-gap: 20%;
+        column-gap: auto;
+        grid-auto-rows: minmax(5%, 10%);
+        margin-top: 10%;
+        grid-template-areas: 'first last'
+                            'email email' 
+                            'pass pass' 
+                            'passconf passconf'
+                            'link link'
+                            '. . '
+                            'btn btn' ;
+    }
+    
+    
+    .firstname {
+        max-width: 65%;
+        grid-column: 1/2;
+        grid-area: first;
+        margin-left: 15%;
+    }
+    
+    .lastname {
+        max-width: 65%;
+        grid-column: 1/2;
+        grid-area: last;
+        margin-right: 20%;
+    }
+    
+    .emailaddress {
+        align-content: center;
+        width: 75% ; 
+        grid-column: 1/3;
+        grid-area: email;
+    }
+    
+    .password {
+        align-content: center;
+        width: 75% ;  
+        margin-top: 0%;
+        grid-area: pass;
+    
+    }
+    
+    .confirm-password {
+        align-content: center;
+        width: 75% ;
+        grid-area: passconf;
+    }
+    
+    
+    .button-submit {
+        grid-area: btn;
+        background-color: #fd9b3f !important;
+        border: none;
+        align-content: center;
+        width: 50% !important; 
+        margin-top: -40%;
+    }
+    
+    .button-submit:hover {
+        transition: all 200ms ease-in-out;
+        cursor: pointer;
+        background-color: #f58800 !important;
+    }
+    
+    
+    div h2 {
+        color: #f59928;
+        text-align: right;
+        font-size: 35px;
+        font-family: 'Arvo';
+        font-weight: bold;
+        margin-top: 3%;
+        margin-right: 43%;
+    }
+    
+    .login-link {
+        grid-area: link;
+        display: inline-block;
         
     }
-
-    .login-link {
-        position: absolute;
-        margin-top: 30%;
-        margin-left: 15%;
-    }
     
-    
-    .firstname {
-        display: inline-block;
-        width: 25%;
-        margin-left: 17%;
-        margin-top: 2%;
-    }
-    
-    .lastname {
-        display: inline-block;
-        width: 25%;
-        margin-left: 15%;
-    }
-    
-    .emailaddress {
-        /* margin-top: 5%;
-        margin-left: 25%;
-        width: 300%; */
-        position: absolute;
-        display: block;
-        align-content: center;
-        margin-left: 10%;
-        margin-top: 0% ;
-        width: 39% ; 
-    }
-    
-    .password {
-        /* width: 300%;
-        margin-top: 75%;
-        margin-left: -87%; */
-        position: absolute;
-        margin-left: 10% ;
-        margin-top: 20% ;
-        width: 39% ;  
-    }
-
-    .confirm-password {
-
-    }
-    
-    
-    .password-input {
-        position: absolute;
-        align-content: center;
-        min-width: 40%;
-        margin-left: 4%;
-        margin-bottom: 25%;
-    }
-    
-    
-    .button-submit {
-        position: absolute;
-        background-color: #fd9b3f !important;
-        border: none;
-        align-content: center;
-        margin-left: 17% !important;
-        margin-bottom: 25% !important;
-        width: 25% !important; 
-    }
-    
-    .button-submit:hover {
-        transition: all 200ms ease-in-out;
-        cursor: pointer;
-        background-color: #f58800 !important;
-    }
-    
-    div h2 {
-        color: #f59928;
-        font-size: 35px;
-        font-family: 'Arvo';
-        font-weight: bold;
-        margin-top: 3%;
-        margin-right: 75%;
-    }
-    
-    .firstname {
-        display: inline-block;
-        width: 25%;
-        margin-left: 17%;
-        margin-top: 2%;
-    }
-    
-    .lastname {
-        display: inline-block;
-        width: 25%;
-        margin-left: 15%;
-    }
-    
-    .emailaddress {
-        /* margin-top: 5%;
-        margin-left: 25%;
-        width: 300%; */
-        position: absolute;
-        align-content: center;
-        margin-left: 10%;
-        margin-top: 0% ;
-        width: 39% ; 
-    }
-    
-    .password {
-        /* width: 300%;
-        margin-top: 75%;
-        margin-left: -87%; */
-        position: absolute;
-        align-content: center;
-        margin-left: 10% ;
-        margin-top: 15% ;
-        width: 39% ;  
-    }
-    
-    
-    .password-input {
-        position: absolute;
-        align-content: center;
-        min-width: 40%;
-        margin-left: 4%;
-        margin-bottom: 25%;
-    }
-    
-    
-    .button-submit {
-        position: absolute;
-        background-color: #fd9b3f !important;
-        border: none;
-        align-content: center;
-        margin-left: 17% !important;
-        margin-top: 15% !important;
-        width: 25% !important; 
-    }
-    
-    .button-submit:hover {
-        transition: all 200ms ease-in-out;
-        cursor: pointer;
-        background-color: #f58800 !important;
-    }
-    
-    div h2 {
-        color: #f59928;
-        font-size: 35px;
-        font-family: 'Arvo';
-        font-weight: bold;
-        margin-top: 3%;
-        margin-right: 75%;
-    }
 }

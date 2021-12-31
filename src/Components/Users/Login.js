@@ -64,6 +64,7 @@ const Login = props => {
                         <InputGroup className="mb-2">
                         <FormControl id="inlineFormInputGroup"
                         placeholder="Password"
+                        type='password'
                         onChange={props.onChangeValue}
                         className={`mb-2 ${classes['input2']}`}
                         ref={password}
