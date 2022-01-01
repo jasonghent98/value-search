@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import appClasses from './App.module.css';
+
+// React Components
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
 import RecentSearchesContainer from './Components/RecentSearchesContainer';
@@ -7,6 +9,7 @@ import Home from './Components/Home';
 import Login from './Components/Users/Login';
 import Register from './Components/Users/Register';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
+import Profile from './Components/Profile';
 // import AlertDismissibleExample from './UI/Error';
 
 // Import route object from react-router-dom to enable routing features
@@ -49,6 +52,7 @@ const App =  props => {
             {/* the code below should be wrapped in a private route component that will only show when the user is authenticated */}
             <PrivateRoute path='/searches' className={appClasses['searches']} component={SearchFormContainer}></PrivateRoute>
           </div>
+          <PrivateRoute path='/profile'><Profile/></PrivateRoute>
     </AuthProvider>
   );
 }

@@ -1,0 +1,11 @@
+.card {
+    background-color: white;
+    width: 75%;
+    height: 50vh;
+    border-radius: 5px;
+}
+
+.image-profile {
+    width: 15%;
+    border-radius: 50%;
+}
