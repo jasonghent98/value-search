@@ -1,11 +1,11 @@
 import React from 'react'
-import Card from '../Layout/ProfileCard';
+import ProfileCard from '../Layout/ProfileCard';
 
 const Profile = () => {
     return (
-        <Card>
+        <ProfileCard>
             this is profile
-        </Card>
+        </ProfileCard>
     )
 }
 
