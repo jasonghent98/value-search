@@ -6,6 +6,9 @@ import {getFirestore, collection, getDocs, getDoc
    ,addDoc, writeBatch, deleteDoc, doc, listDocuments, where
   } from 'firebase/firestore'
 import dummyData from '../Utils/CompanyDataSet';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+const functions = require('firebase-functions');
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9hnwjS0wv2vvdpG5PTONHlflv7zUQmq4",
@@ -77,6 +80,14 @@ export const dummyDataToFirebase = async() => {
   }
   
 }
+
+// Storage for firebase photos
+
+// create a root reference
+
+export const storage = getStorage(app);
+
+
 
 // FIREBASE AUTH
 

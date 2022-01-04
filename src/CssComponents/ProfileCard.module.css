@@ -1,33 +1,97 @@
 .card {
     background-color: white;
     width: 86%;
-    height: 50vh;
+    height: 80vh;
     border-radius: 5px;
     margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: grid;
+    position: relative;
     row-gap: 0%;
     grid-template-areas: 
-    'image . .'
+    'image values .'
     'name . .'
+    'title . .';
+    grid-template-columns: 50% 50%;
 }
 
-.image-profile {
+.profile-pic-div {
     width: auto;
-    height: 25vh;
+    height: 15vh;
     border-radius: 50%;
-    margin-left: 40%;
+    margin-left: 35%;
     margin-top: 5%;
     grid-area: image;
 
 }
 
-.profile-name {
-    color: black;
+.image-profile {
+    width: 45%;
+    height: 20vh;
+    border-radius: 25%;
+    margin-left: 10%;
+    margin-top: 5%;
+
+}
+
+.file {
+    display: none;
+}
+
+.upload-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 25%;
+    color: white;
+    height: auto;
+    width: 20%;
+    font-size: 1rem;
+    position: absolute;
+    margin-top: 20vh;
     text-align: center;
-    margin-bottom: 15%;
-    margin-right: 0%;
+    left: 6.5%;
+    overflow: hidden;
+    z-index: auto;
+}
+
+.profile-name {
+    border: black 2px solid;
+    color: black;
+    position: absolute;
+    text-align: center;
+    width: 25%;
+    bottom: 30vh;
+    margin-left: 20%;
+    margin-right: 55%;
     grid-area: name;
-    font-size: 2rem;
+    font-size: 150%;
     display: inline;
+
+}
+
+.job-title {
+    grid-area: title;
+    color: black !important;
+    position: absolute;
+    text-align: center;
+    width: 25%;
+    bottom: 25vh;
+    margin-left: 20%;
+    margin-right: 55%;
+    grid-area: name;
+    font-size: 100%;
+    display: inline;
+}
+
+.values-container {
+    position: absolute;
+    width: 50%;
+    height: 30vh;
+    left: 25%;
+    top: 10%;
+    right: 25%; 
+    text-align: center;
+    grid-area: values;
 
 }
