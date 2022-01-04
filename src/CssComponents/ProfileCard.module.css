@@ -95,3 +95,24 @@
     grid-area: values;
 
 }
+
+.experience {
+    border: black 2px solid;
+    box-shadow: 1px 1px 3px rgba(31, 29, 29, 0.7);
+    grid-area: experience;
+    position: absolute;
+    width: 90%;
+    height: 25vh;
+    top: 50%;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+}
+
+.update-profile-submit {
+    position: absolute;
+    width: 30%;
+    right: 35%;
+    left: 35%;
+    top: 85%;
+}

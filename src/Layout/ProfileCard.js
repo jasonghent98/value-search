@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import classes from '../CssComponents/ProfileCard.module.css'
-import { Form, FormGroup, FormLabel, FormControl } from 'react-bootstrap'
+import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap'
 import {profileImg} from '../Assets/Placeholder'
 import Image from 'react-bootstrap/Image'
 
@@ -61,11 +61,14 @@ const ProfileCard = () => {
                 <li></li>
             </ul>
             <label htmlFor="experience"></label>
-            <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+            <form action="/">
+                <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                <Button className={classes['update-profile-submit']} variant='primary'>Update</Button>
+            </form>
 
         </div>
     )
