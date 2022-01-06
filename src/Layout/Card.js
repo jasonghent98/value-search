@@ -1,4 +1,4 @@
-import classes from '../CssComponents/ProfileCard.module.css'
+import classes from '../CssComponents/Card.module.css'
 
 const Card = ({children}) => {
     

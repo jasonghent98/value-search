@@ -1,12 +1,11 @@
-import Card from '../Layout/Card';
-import React, {useState, useEffect} from 'react'
-import classes from '../CssComponents/Profile.module.css'
-import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap'
-import {profileImg} from '../Assets/Placeholder'
-import Image from 'react-bootstrap/Image'
+import Card from '../../Layout/Card';
+import React, {useState} from 'react'
+import classes from '../../CssComponents/Profile.module.css'
+import { Button } from 'react-bootstrap'
+import {profileImg} from '../../Assets/Placeholder'
 
-// import storage API to store photos
-import { storage } from '../API/Firebase'
+// import storage API to store photos (still not working)
+import { storage } from '../../API/Firebase'
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@firebase/storage'
 import axios from 'axios'
 
@@ -21,27 +20,27 @@ const Profile = () => {
         console.log(file);
     }
 
-    const photoUploadHandler = async () => {
-        if (!file) return;
-        // create a ref to the storage location
-        const storageRef = ref(storage, `/files/${file.name}`)
-        const uploadData = await uploadBytes(storageRef, file);
-        console.log(uploadData)
+    // const photoUploadHandler = async () => {
+    //     if (!file) return;
+    //     // create a ref to the storage location
+    //     const storageRef = ref(storage, `/files/${file.name}`)
+    //     const uploadData = await uploadBytes(storageRef, file);
+    //     console.log(uploadData)
 
 
-        // uploadTask.on('state_changed', (snapshot) => {
-        //     const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        //     console.log(prog);
-        //     setProgress(prog);
-        // }, error => console.log(error), 
-        //     () => getDownloadURL(uploadTask.snapshot.ref)
-        //     .then(url => console.log(url))) 
+    //     uploadTask.on('state_changed', (snapshot) => {
+    //         const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+    //         console.log(prog);
+    //         setProgress(prog);
+    //     }, error => console.log(error), 
+    //         () => getDownloadURL(uploadTask.snapshot.ref)
+    //         .then(url => console.log(url))) 
         
-    }
+    // }
 
-    const onSubmitPhoto = event => {
-        photoUploadHandler(file);
-    }
+    // const onSubmitPhoto = event => {
+    //     photoUploadHandler(file);
+    // }
 
     return (
         <Card>
@@ -68,7 +67,6 @@ const Profile = () => {
                 </ul>
                 <Button className={classes['update-profile-submit']} variant='primary'>Update</Button>
             </form>
-
         </Card>
     )
 }

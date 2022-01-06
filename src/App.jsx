@@ -9,7 +9,8 @@ import Home from './Components/Home';
 import Login from './Components/Users/Login';
 import Register from './Components/Users/Register';
 import classes from '../src/CssComponents/SearchFormContainer.module.css';
-import Profile from './Components/Profile';
+import Profile from './Components/Users/Profile';
+import Edit from './Components/Users/Edit';
 // import AlertDismissibleExample from './UI/Error';
 
 // Import route object from react-router-dom to enable routing features
@@ -53,6 +54,9 @@ const App =  props => {
             <PrivateRoute path='/searches' className={appClasses['searches']} component={SearchFormContainer}></PrivateRoute>
           </div>
           <PrivateRoute path='/profile'><Profile/></PrivateRoute>
+          
+          {/* we need to provide authorization for this component as well */}
+          <PrivateRoute path='/edit'><Edit/></PrivateRoute>
     </AuthProvider>
   );
 }
