@@ -23,11 +23,13 @@ const firebaseConfig = {
   // initialize app with your config
   export const app = firebase.initializeApp(firebaseConfig);
   // initialize instance of firestore db. db connection
-  const db = getFirestore(app);
+  export const db = getFirestore(app);
 
   // get a ref to specific collection in the db
   const userRef = collection(db, "users");
   const companyRef = collection(db, "companies");
+  export const users1Ref = collection(db, "users1");
+  console.log(users1Ref);
 
   // Retrieves all user data from firebase from appropriate collection
 export const getUserData = async() => {
@@ -54,15 +56,15 @@ export const getCompanyData = async() => {
 export const addData = async () => {
   try {
     const newData = await addDoc(userRef, {
-      name: 'jason',
-      age: 23
+      name: 'rori',
+      age: 55
     })
     console.log(newData, 'success!')
   } catch (e) {
     console.error(e)
   }
-  
 }
+addData()
 
 
 export const dummyDataToFirebase = async() => {
@@ -89,7 +91,7 @@ export const storage = getStorage(app);
 
 
 
-// FIREBASE AUTH
+// FIREBASE AUTHORIZATION INSTANCE
 
 export const auth = firebase.auth()
 

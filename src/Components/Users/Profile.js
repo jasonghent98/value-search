@@ -1,5 +1,6 @@
 import Card from '../../Layout/Card';
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom';
 import classes from '../../CssComponents/Profile.module.css'
 import { Button } from 'react-bootstrap'
 import {profileImg} from '../../Assets/Placeholder'
@@ -14,11 +15,14 @@ const Profile = () => {
     const [error, setError] = useState(null);
     const [progress, setProgress] = useState(0);
 
+    const history = useHistory();
+
     const photoClickHandler = event => {
         setFile({file: event.target.files[0]}, () => event.target.files[0])
         setError(null);
         console.log(file);
     }
+
 
     // const photoUploadHandler = async () => {
     //     if (!file) return;
@@ -42,6 +46,10 @@ const Profile = () => {
     //     photoUploadHandler(file);
     // }
 
+    const toEditPage = () => {
+        history.push('/edit');
+    }
+
     return (
         <Card>
              <div className="profile-pic-div">
@@ -59,13 +67,13 @@ const Profile = () => {
                 <li></li>
             </ul>
             <label htmlFor="experience"></label>
-            <form action="/">
+            <form action="/edit">
                 <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
                     <li></li>
                     <li></li>
                     <li></li>
                 </ul>
-                <Button className={classes['update-profile-submit']} variant='primary'>Update</Button>
+                <Button className={classes['update-profile-submit']} variant='primary' onClick={toEditPage}>Edit</Button>
             </form>
         </Card>
     )

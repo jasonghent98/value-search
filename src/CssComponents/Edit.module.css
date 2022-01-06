@@ -7,3 +7,10 @@
     margin-left: 50%;
     overflow: scroll;
 }
+
+.profile-link {
+    position: absolute;
+    top: 90%;
+    bottom: 10%;
+    left: 25%;
+}
