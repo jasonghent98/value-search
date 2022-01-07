@@ -8,10 +8,9 @@ const RecentSearchesContainer = props => {
     return (
         <Card className={classes['card']}>
             <h4 className={classes.title}>Your Recent Searches</h4>
-            {props.userSearches.map((userSearch) => {
+            {/* {props.userSearches.map((userSearch) => {
                 return <RecentSearch jobTitleInput={userSearch.jobTitleInput} valueInput={userSearch.valueInput}/>
-            })}
-            {/* <RecentSearch userSearches={props.userSearches}/> */}
+            })} */}
         </Card>
     )
 }

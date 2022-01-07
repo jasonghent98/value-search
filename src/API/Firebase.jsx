@@ -26,7 +26,7 @@ const firebaseConfig = {
   export const db = getFirestore(app);
 
   // get a ref to specific collection in the db
-  const userRef = collection(db, "users");
+  export const userRef = collection(db, "users");
   const companyRef = collection(db, "companies");
   export const users1Ref = collection(db, "users1");
   console.log(users1Ref);

@@ -6,7 +6,7 @@ import classes from '../../CssComponents/Edit.module.css'
 
 // firestore access
 import { addDoc, setDoc, doc } from "@firebase/firestore";
-import {addData, db, users1Ref} from '../../API/Firebase'
+import {addData, db, users1Ref, userRef} from '../../API/Firebase'
 
 const Edit = () => {
     // initialize refs to listen for inputs 
@@ -19,7 +19,7 @@ const Edit = () => {
     const history = useHistory();
 
     // create an onSubmitHandler that will handle form data
-    const onSubmitHandler = async (event) => {
+    const onSubmitHandler = (event) => {
         event.preventDefault();
         console.log('before')
         addData()
@@ -32,10 +32,7 @@ const Edit = () => {
                 values: valuesRef.current.value,
                 experience: experienceRef.current.value
             }
-            console.log(editData);
-            await addDoc(users1Ref, editData)
-            setDoc()
-            
+            addDoc(userRef, editData).then(res => console.log(res)).catch(err => console.log(err));
             
         } catch (error) {
             console.log(error)

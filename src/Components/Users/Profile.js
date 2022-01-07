@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import classes from '../../CssComponents/Profile.module.css'
 import { Button } from 'react-bootstrap'
 import {profileImg} from '../../Assets/Placeholder'
+import Header from '../../Layout/Header';
 
 // import storage API to store photos (still not working)
 import { storage } from '../../API/Firebase'
@@ -51,31 +52,34 @@ const Profile = () => {
     }
 
     return (
-        <Card>
-             <div className="profile-pic-div">
-                <img src={profileImg} alt="" className={classes['image-profile']} id='photo' />
-                <input type="file" alt='image' className={classes['file']} id='file' onChange={photoClickHandler}/>
-                <label htmlFor="file" className={classes['upload-btn']} >Choose Photo</label>
-                {/* <button onClick={onSubmitPhoto}>Upload Image</button> */}
-             </div>
+        <div className="body">
+            <Header/>
+                <Card>
+                    <div className="profile-pic-div">
+                        <img src={profileImg} alt="" className={classes['image-profile']} id='photo' />
+                        <input type="file" alt='image' className={classes['file']} id='file' onChange={photoClickHandler}/>
+                        <label htmlFor="file" className={classes['upload-btn']} >Choose Photo</label>
+                        {/* <button onClick={onSubmitPhoto}>Upload Image</button> */}
+                    </div>
 
-            <h1 className={classes['profile-name']}>Jason Ghent</h1>
-            <h3 className={classes['job-title']}><i>IT Technician</i></h3>
-            <ul className={classes['values-container']} contentEditable='true'> <h3>Jason's Core Values</h3>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <label htmlFor="experience"></label>
-            <form action="/edit">
-                <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-                <Button className={classes['update-profile-submit']} variant='primary' onClick={toEditPage}>Edit</Button>
-            </form>
-        </Card>
+                    <h1 className={classes['profile-name']}>Jason Ghent</h1>
+                    <h3 className={classes['job-title']}><i>IT Technician</i></h3>
+                    <ul className={classes['values-container']} contentEditable='true'> <h3>Jason's Core Values</h3>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <label htmlFor="experience"></label>
+                    <form action="/edit">
+                        <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <Button className={classes['update-profile-submit']} variant='primary' onClick={toEditPage}>Edit</Button>
+                    </form>
+                </Card>
+        </div>
     )
 }
 

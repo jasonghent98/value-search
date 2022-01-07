@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { Form, Row, Col, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
 import classes from '../CssComponents/SearchFormContainer.module.css'
 import Header from '../Layout/Header';
 import RecentSearchesContainer from './RecentSearchesContainer';
+import { useHistory } from 'react-router-dom';
 
 // import current user context to be able to display current user email in a welcome alert
 import { useAuth, AuthProvider } from '../Contexts/AuthContext';
@@ -11,70 +12,60 @@ const SearchFormContainer = props => {
     const [userSearches, setUserSearches] = useState([])
     const { currentUser, hideAlert } = useAuth();
 
-    const [jobTitleInput, setJobTitleInput] = useState('');
+    const jobInputRef = useRef();
+    const valueInputRef = useRef();
     const [jobInputTouched, setJobInputTouched] = useState(false);
-    const [valueInput, setValueInput] = useState('');
     const [valueInputTouched, setValueInputTouched] = useState(false);
     const [isJobValid, setIsJobValid] = useState(false);
     const [isValueValid, setIsValueValid] = useState(false);
+    const history = useHistory();
 
-    const notValidJobInput = !jobTitleInput && jobInputTouched
-    const notValidValueInput = !valueInput && valueInputTouched
+    // const notValidJobInput = !jobInputRef.current.value && jobInputTouched
+    // const notValidValueInput = !valueInputRef.current.value && valueInputTouched
 
-    const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
+    // const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
+    
 
-    // function that handles job searches
+    // Define a matchValues function that will take in finalizedObject user input. 
+    // loop over every document in the companies collection in firestore
+        // if a document in the companies collection contains a keyword that matches the valueInputRef or jobInputRef
+            // populate the document and all of its fields as a <Result> component
+
+// when the form to search for a position is submitted, it needs save input in an object, and call matchValues function
+// 
 
     const onSearchHandler = event => {
         event.preventDefault();
         setJobInputTouched(true);
         setValueInputTouched(true);
-    
-        if (jobTitleInput.trim() === '') {
-          setIsJobValid(false);
+        if (!jobInputRef.current.value) {
           return;
         }
-        if (valueInput.trim() === '') {
-          setIsValueValid(false);
+        if (!valueInputRef.current.value) {
           return;
         }
         const finalizedInput = {
-          jobTitleInput: jobTitleInput,
-          valueInput: valueInput
+          jobInput: jobInputRef.current.value,
+          valueInput: valueInputRef.current.value
         }
-    
+        console.log(finalizedInput)
         setUserSearches((prevState) => {
           return [finalizedInput, ...prevState]
         })
-        console.log(userSearches);
+        console.log(userSearches)
         setIsJobValid(true)
         setIsValueValid(true)
-        setJobTitleInput('');
-        setValueInput('');
+        history.push('/results')
     
       }
 
-    //   listens for changes in the job position input
-
-      const onJobTitleChange = event => {
-        setJobTitleInput(event.target.value);
-        console.log(event.target.value);
-      }
-
-    //   listens for changes in the value input
-
-      const onValueChange = event => {
-        setValueInput(event.target.value);
-        console.log(event.target.value);
-      
-      }
 
     return (
     <div>
         <Header/>
         {currentUser && <Alert variant='success' dismissible={true} >Welcome back, {currentUser.email}</Alert>}
 
-        <Form className={classes['form-search']} onSubmit={props.onSubmit}>
+        <Form className={classes['form-search']} onSubmit={onSearchHandler}>
             <Row className="align-items-center">
             <div className={classes['search-form-input']}>
                 <Col xs="auto">
@@ -85,7 +76,7 @@ const SearchFormContainer = props => {
                     className={`mb-2 ${classes['input1']}`} 
                     id="inlineFormInput"
                     placeholder="Job Title"
-                    value={props.resetJob}
+                    ref={jobInputRef}
                     onChange={props.onChangeJob}
                 />
                 </Col>
@@ -99,7 +90,7 @@ const SearchFormContainer = props => {
                 placeholder="Values/Keywords"
                 onChange={props.onChangeValue}
                 className={`mb-2 ${classes['input2']}`}
-                value={props.resetValue}  
+                ref={valueInputRef}
                 />
                 </InputGroup>
                 </Col>
@@ -108,10 +99,7 @@ const SearchFormContainer = props => {
                     Search Jobs
                 </Button>   
             </Row>
-        </Form>
-        <div>
-            <RecentSearchesContainer userSearches={userSearches}/>
-        </div>         
+        </Form>    
     </div>
     )
 }
