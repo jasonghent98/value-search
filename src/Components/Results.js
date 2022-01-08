@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchFormContainer from './SearchFormContainer';
 import RecentSearchesContainer from './RecentSearchesContainer';
-import Result from './Result';
+import PopulatedSearchResult from './PopulatedSearchCard';
 import classes from '../CssComponents/Results.module.css'
 
 const Results = () => {
@@ -9,7 +9,7 @@ const Results = () => {
         <div>
             <SearchFormContainer/>
             <div className={classes['result']}>
-                <Result/>
+                <PopulatedSearchResult/>
             </div>
         </div>
     )

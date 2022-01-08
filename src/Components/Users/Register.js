@@ -39,7 +39,6 @@ const Register = (props) => {
             setIsLoading(true);
             const currentUser = await signUp(email.current.value, password.current.value)
             history.push('/searches')
-            console.log(currentUser);
         } catch (error) {
             setError('Failed to create an account');
             console.log(error)
@@ -62,7 +61,7 @@ const Register = (props) => {
                     <Form.Label>First Name</Form.Label>
                     <Form.Control 
                     className={classes['email-input']}
-                    type="email" 
+                    type="text" 
                     ref={email}
                     placeholder="First Name" 
                     onChange={props.onEmailChange} />
@@ -73,7 +72,7 @@ const Register = (props) => {
                     <Form.Label>Last Name </Form.Label>
                     <Form.Control 
                     className={classes['email-input']}
-                    type="email" 
+                    type="text" 
                     ref={email}
                     placeholder="Last Name" 
                     onChange={props.onEmailChange} />

@@ -32,7 +32,7 @@ const Edit = () => {
                 values: valuesRef.current.value,
                 experience: experienceRef.current.value
             }
-            addDoc(userRef, editData).then(res => console.log(res)).catch(err => console.log(err));
+            addDoc(users1Ref, editData).then(res => console.log(res)).catch(err => console.log(err));
             
         } catch (error) {
             console.log(error)

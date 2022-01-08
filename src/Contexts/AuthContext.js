@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { auth } from '../API/Firebase';
+import { auth, db, users1Ref } from '../API/Firebase';
+import { setDoc, doc, addDoc } from '@firebase/firestore';
+
 
 const AuthContext = createContext();
 
@@ -14,10 +16,27 @@ export const AuthProvider = (props) => {
 
     const signUp = (email, password) => {
         try {
-           return auth.createUserWithEmailAndPassword(email, password)
+           return auth.createUserWithEmailAndPassword(email, password).then(async (user) => { 
+               if (user) {
+                // const userId = user.user.uid;
+                // const docRef = doc(db, 'users1', userId); 
+                // console.log(userId)
+                // await setDoc(docRef, {
+                //     uid: userId,
+                //     email,
+                //     password
+                // }, {merge: true})
+                await addDoc(users1Ref, {
+                    email,
+                    password
+                })
+               }
+        
+            })
         } catch (error) {
             console.log(error, 'from authContext.js')
         }
+        console.log('hello')
     }
 
     const login = (email, password) => {

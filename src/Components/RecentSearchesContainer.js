@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from '../CssComponents/RecentSearchesContainer.module.css'
-import RecentSearch from './RecentSearch'
+import PopulatedSearchCard from './PopulatedSearchCard'
 import {Card} from 'react-bootstrap'
 
 const RecentSearchesContainer = props => {

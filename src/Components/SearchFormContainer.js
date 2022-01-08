@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 import { useAuth, AuthProvider } from '../Contexts/AuthContext';
 
 const SearchFormContainer = props => {
-    const [userSearches, setUserSearches] = useState([])
     const { currentUser, hideAlert } = useAuth();
 
     const jobInputRef = useRef();
@@ -26,10 +25,13 @@ const SearchFormContainer = props => {
     // const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
     
 
-    // Define a matchValues function that will take in finalizedObject user input. 
-    // loop over every document in the companies collection in firestore
-        // if a document in the companies collection contains a keyword that matches the valueInputRef or jobInputRef
-            // populate the document and all of its fields as a <Result> component
+    // Define a matchValues function that will take in finalizedObject user input. Ultimately, this function will be called inside 
+    // the onSearchHandler function with the finalizedObject data
+    
+    // matchValues function:
+    // query companies collection in firestore and loop over every document in the collection
+        // if any document contains values in its "jobTitle" or "values" field that match the valueInputRef or jobInputRef
+            // populate the document and all of its fields as a <PopulatedSearchResult> component
 
 // when the form to search for a position is submitted, it needs save input in an object, and call matchValues function
 // 
@@ -49,10 +51,7 @@ const SearchFormContainer = props => {
           valueInput: valueInputRef.current.value
         }
         console.log(finalizedInput)
-        setUserSearches((prevState) => {
-          return [finalizedInput, ...prevState]
-        })
-        console.log(userSearches)
+       
         setIsJobValid(true)
         setIsValueValid(true)
         history.push('/results')

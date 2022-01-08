@@ -29,7 +29,7 @@ const firebaseConfig = {
   export const userRef = collection(db, "users");
   const companyRef = collection(db, "companies");
   export const users1Ref = collection(db, "users1");
-  console.log(users1Ref);
+
 
   // Retrieves all user data from firebase from appropriate collection
 export const getUserData = async() => {
