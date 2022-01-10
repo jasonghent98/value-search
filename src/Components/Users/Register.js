@@ -115,7 +115,7 @@ const Register = (props) => {
                 </Form.Group>
                 </div>
                 <div className={classes['button-submit']}>
-                    <Button className={classes['actual-buttton']} disabled={isLoading} type="submit">
+                    <Button className={classes['actual-button']} disabled={isLoading} type="submit">
                         Register 
                     </Button>
                 </div>

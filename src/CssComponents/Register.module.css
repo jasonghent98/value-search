@@ -27,10 +27,10 @@ body {
     justify-items: center;
     align-items: start;
     /* grid-template-columns: repeat(2, 2fr); */
-    row-gap: 20%;
+    row-gap: 22%;
     column-gap: auto;
     grid-auto-rows: minmax(5%, 10%);
-    margin-top: 1%;
+    margin-top: 5%;
     grid-template-areas: 'first last'
                         'email email' 
                         'pass pass' 
@@ -77,13 +77,23 @@ body {
 }
 
 
-.button-submit {
+/* .button-submit {
     align-content: center;
     grid-area: btn;
     background-color: #fd9b3f !important;
     border: none;
     margin-top: -20%;
     width: 50% !important; 
+} */
+
+.actual-button {
+    align-content: center;
+    position: absolute;
+    grid-area: btn;
+    background-color: #fd9b3f !important;
+    border: none;
+    width: 50% !important; 
+    bottom: 5%;
 }
 
 
@@ -97,6 +107,7 @@ body {
 div h2 {
     color: #f59928;
     text-align: right;
+    position: relative;
     font-size: 35px;
     font-family: 'Arvo';
     font-weight: bold;
@@ -107,8 +118,8 @@ div h2 {
 .login-link {
     grid-area: link;
     display: inline-block;
-    margin-top: -3%;
-    
+    position: absolute;
+    bottom:15%; 
 }
 
 @media all and (max-width: 900px) {
@@ -119,11 +130,10 @@ div h2 {
         background-color: white;
         box-shadow: 1px 1px 8px rgb(97, 90, 90);
         margin-top: 3%;
-        margin-bottom: 40%;
         margin-left: 20%;
-        margin-right: 25%;
+        margin-right: 20%;
         border-radius: 8px;
-        height: 33rem;
+        height: 75vh;
         width: 60%;
         align-content: center;
         position: relative;
@@ -187,14 +197,26 @@ div h2 {
     }
     
     
-    .button-submit {
+    /* .button-submit {
         grid-area: btn;
         background-color: #fd9b3f !important;
         border: none;
         align-content: center;
         width: 50% !important; 
         margin-top: -40%;
+    } */
+
+    .actual-button {
+        align-content: center;
+        position: absolute;
+        grid-area: btn;
+        background-color: #fd9b3f !important;
+        border: none;
+        width: 50% !important; 
+        bottom: 5%;
     }
+
+
     
     .button-submit:hover {
         transition: all 200ms ease-in-out;
@@ -206,6 +228,7 @@ div h2 {
     div h2 {
         color: #f59928;
         text-align: right;
+        position: relative;
         font-size: 35px;
         font-family: 'Arvo';
         font-weight: bold;
@@ -216,7 +239,8 @@ div h2 {
     .login-link {
         grid-area: link;
         display: inline-block;
-        
+        position: absolute;
+        bottom:15%; 
     }
     
 }
