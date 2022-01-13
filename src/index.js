@@ -5,8 +5,6 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './Contexts/AuthContext';
 
-const dotEnv = require('dotenv').config();
-
 
 ReactDOM.render(
   <React.StrictMode>

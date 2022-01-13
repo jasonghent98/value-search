@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { auth, db, users1Ref } from '../API/Firebase';
+import { auth, db, userRef } from '../API/Firebase';
 import { setDoc, doc, addDoc } from '@firebase/firestore';
 
 
@@ -26,7 +26,7 @@ export const AuthProvider = (props) => {
                 //     email,
                 //     password
                 // }, {merge: true})
-                await addDoc(users1Ref, {
+                await addDoc(userRef, {
                     email,
                     password
                 })

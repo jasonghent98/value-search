@@ -8,10 +8,12 @@ import {getFirestore, collection, getDocs, getDoc
 import dummyData from '../Utils/CompanyDataSet';
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 const functions = require('firebase-functions');
+require('dotenv').config();
+
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC9hnwjS0wv2vvdpG5PTONHlflv7zUQmq4",
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
@@ -26,9 +28,9 @@ const firebaseConfig = {
   export const db = getFirestore(app);
 
   // get a ref to specific collection in the db
-  export const userRef = collection(db, "users");
+  export const userRef = collection(db, "userData");
   const companyRef = collection(db, "companies");
-  export const users1Ref = collection(db, "users1");
+  const testRef = collection(db, 'test')
 
 
   // Retrieves all user data from firebase from appropriate collection
@@ -64,14 +66,13 @@ export const addData = async () => {
     console.error(e)
   }
 }
-addData()
 
 
 export const dummyDataToFirebase = async() => {
   try {
     const batch = writeBatch(db);
     dummyData.forEach(doc => {
-      addDoc(companyRef, doc)
+      addDoc(testRef, doc)
       console.log(doc)
     })
     await batch.commit();

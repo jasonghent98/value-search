@@ -64,14 +64,14 @@ const Profile = () => {
 
                     <h1 className={classes['profile-name']}>Jason Ghent</h1>
                     <h3 className={classes['job-title']}><i>IT Technician</i></h3>
-                    <ul className={classes['values-container']} contentEditable='true'> <h3>Jason's Core Values</h3>
+                    <ul className={classes['values-container']} > <h3>Jason's Core Values</h3>
                         <li></li>
                         <li></li>
                         <li></li>
                     </ul>
                     <label htmlFor="experience"></label>
                     <form action="/edit">
-                        <ul className={classes['experience']} contentEditable='true'> <h3>Relevant Experience</h3>
+                        <ul className={classes['experience']}> <h3>Relevant Experience</h3>
                             <li></li>
                             <li></li>
                             <li></li>
