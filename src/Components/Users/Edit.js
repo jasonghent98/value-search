@@ -60,7 +60,7 @@ const Edit = () => {
         }
         history.push('/profile')
     }
-
+    
 
     return (
         <Fragment>

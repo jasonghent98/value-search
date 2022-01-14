@@ -17,7 +17,7 @@ const Register = (props) => {
     const email = useRef();
     const password = useRef();
     const confirmPassword = useRef();
-    const image = useRef();
+    const img = useRef();
     const values = useRef();
     const description = useRef();
     const [error, setError] = useState('');
@@ -42,7 +42,15 @@ const Register = (props) => {
         try {
             setError('')
             setIsLoading(true);
-            const currentUser = await signUp(email.current.value, password.current.value)
+            await signUp(
+                firstName.current.value, 
+                lastName.current.value, 
+                email.current.value, 
+                password.current.value, 
+                img.current.value,
+                values.current.value,
+                description.current.value
+                )
             history.push('/searches')
         } catch (error) {
             setError('Failed to create an account');
@@ -99,7 +107,7 @@ const Register = (props) => {
                     <Form.Label>Profile Image</Form.Label>
                     <Form.Control 
                     type="file" 
-                    ref={image}
+                    ref={img}
                     placeholder="Profile image" 
                     onChange={props.onEmailChange} />
                 </Form.Group>

@@ -5,6 +5,7 @@ import classes from '../../CssComponents/Profile.module.css'
 import { Button } from 'react-bootstrap'
 import {profileImg} from '../../Assets/Placeholder'
 import Header from '../../Layout/Header';
+import { useAuth } from '../../Contexts/AuthContext';
 
 // import storage API to store photos (still not working)
 import { storage } from '../../API/Firebase'
@@ -15,6 +16,7 @@ const Profile = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
     const [progress, setProgress] = useState(0);
+    const {currentUser} = useAuth();
 
     const history = useHistory();
 
@@ -50,6 +52,20 @@ const Profile = () => {
     const toEditPage = () => {
         history.push('/edit');
     }
+
+    //  PART 1:
+    // we have access to the currentUser object once the user signs in and navigates to the the profile page. The profile page needs 
+    // an async function that submits a req to firestore, searching for the doc that matches the currentUser.email
+
+    // within the fetch async function, we need to save the response to a variable and convert to it to a JS object. We then 
+    // should return the response variable
+
+    // PART 2:
+    // once we have the response we need as a JS object on this component, we should console.log to make sure it has all
+    // the fields we need
+
+    // From there, we can destructure the object into individual variables and then add those variables as the values for the 
+    // value attribute in each respective HTML element.
 
     return (
         <div className="body">
