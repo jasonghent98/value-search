@@ -47,7 +47,7 @@ const Edit = () => {
             const editData = {
                 firstName: firstNameRef.current.value,
                 lastName: lastNameRef.current.value,
-                // profileImg: profileImgRef.current.value,
+                profileImg: profileImgRef.current.value,
                 values: valuesRef.current.value,
                 experience: experienceRef.current.value
             }
@@ -80,7 +80,7 @@ const Edit = () => {
                     <Form.Group className="mb-3" controlId="formProfileImages">
                         <Form.Label>Profile Image</Form.Label>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="image" name="image" ref={profileImgRef}/>
+                            <input type="file" class="form-control" id="image" name="image" ref={profileImgRef} required/>
                         </div>
                  </Form.Group>
 

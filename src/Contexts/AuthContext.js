@@ -14,23 +14,18 @@ export const AuthProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [alert, setAlert] = useState(true);
 
-    const signUp = (email, password) => {
+    const signUp = (firstName, lastName, email, password, img, values, description) => {
         try {
            return auth.createUserWithEmailAndPassword(email, password).then(async (user) => { 
-               if (user) {
-                // const userId = user.user.uid;
-                // const docRef = doc(db, 'users1', userId); 
-                // console.log(userId)
-                // await setDoc(docRef, {
-                //     uid: userId,
-                //     email,
-                //     password
-                // }, {merge: true})
                 await addDoc(userRef, {
+                    firstName,
+                    lastName,
                     email,
-                    password
+                    password,
+                    img,
+                    values,
+                    description
                 })
-               }
         
             })
         } catch (error) {

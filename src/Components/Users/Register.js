@@ -12,9 +12,14 @@ const Register = (props) => {
     // const [email, setEmail] = useState('')
     // const [password, setPassword] = useState('')
     // const [confirmPassword, setConfirmPassword] = useState('')
+    const firstName = useRef();
+    const lastName = useRef();
     const email = useRef();
     const password = useRef();
     const confirmPassword = useRef();
+    const image = useRef();
+    const values = useRef();
+    const description = useRef();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -60,9 +65,8 @@ const Register = (props) => {
                 <Form.Group controlId="formBasicFirstName">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control 
-                    className={classes['email-input']}
                     type="text" 
-                    ref={email}
+                    ref={firstName}
                     placeholder="First Name" 
                     onChange={props.onEmailChange} />
                 </Form.Group>
@@ -71,9 +75,8 @@ const Register = (props) => {
                 <Form.Group controlId="formBasicLastName">
                     <Form.Label>Last Name </Form.Label>
                     <Form.Control 
-                    className={classes['email-input']}
                     type="text" 
-                    ref={email}
+                    ref={lastName}
                     placeholder="Last Name" 
                     onChange={props.onEmailChange} />
                 </Form.Group>
@@ -82,7 +85,6 @@ const Register = (props) => {
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
-                    className={classes['email-input']}
                     type="email" 
                     ref={email}
                     placeholder="Enter email" 
@@ -92,11 +94,40 @@ const Register = (props) => {
                     </Form.Text>
                 </Form.Group>
                 </div>
+                <div className={`mb-3 ${classes['image']}`} >
+                <Form.Group controlId="image">
+                    <Form.Label>Profile Image</Form.Label>
+                    <Form.Control 
+                    type="file" 
+                    ref={image}
+                    placeholder="Profile image" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['values']}`} >
+                <Form.Group controlId="values">
+                    <Form.Label>What are your core values?</Form.Label>
+                    <Form.Control 
+                    type="text" 
+                    ref={values}
+                    placeholder="Enter your values here" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['description']}`} >
+                <Form.Group controlId="description">
+                    <Form.Label>Tell me a bit about your experience 🤔</Form.Label>
+                    <Form.Control 
+                    type="text" 
+                    ref={description}
+                    placeholder="Experience?" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
                 <div className={`mb-3 ${classes['password']}`} >
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
-                    className={classes['pass-input']}
                     ref={password}
                     type="password" 
                     placeholder="Password" 
@@ -107,7 +138,6 @@ const Register = (props) => {
                 <Form.Group controlId="formBasicConfirmPassword">
                  <Form.Label>Confirm Password</Form.Label>
                     <Form.Control 
-                    className={classes['conf-pass-input']}
                     type="password" 
                     ref={confirmPassword}
                     placeholder="Password" 

@@ -14,10 +14,11 @@ body {
     align-items: center;
     border-radius: 8px;
     height: 33rem;
-    width: 60%;
-    height: 75vh;
-    margin-left: 20%;
-    margin-right: 20%;
+    width: 80%;
+    height: 80vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
     align-content: center;
     overflow: hidden;
 }
@@ -27,14 +28,17 @@ body {
     justify-items: center;
     align-items: start;
     /* grid-template-columns: repeat(2, 2fr); */
-    row-gap: 22%;
+    row-gap: 15%;
     column-gap: auto;
     grid-auto-rows: minmax(5%, 10%);
     margin-top: 5%;
+    overflow: scroll;
     grid-template-areas: 'first last'
                         'email email' 
                         'pass pass' 
                         'passconf passconf'
+                        'img values'
+                        'descript descript'
                         'link link'
                         '. .'
                         'btn btn' ;
@@ -45,14 +49,13 @@ body {
     max-width: 100%;
     grid-column: 1/2;
     grid-area: first;
-    margin-left: 20%;
 }
 
 .lastname {
     max-width: 100%;
     grid-column: 1/2;
     grid-area: last;
-    margin-right: 25%;
+    margin-right: 45%;
 }
 
 .emailaddress {
@@ -60,6 +63,23 @@ body {
     width: 75% ; 
     grid-column: 1/3;
     grid-area: email;
+}
+
+.image {
+    grid-area: img;
+    width: 35%;
+    margin-right: 10%;
+}
+
+.values {
+    grid-area: values;
+    margin-right: 30%;
+}
+
+.description {
+    grid-area: descript;
+    width: 70%;
+    height: 10%;
 }
 
 .password {
@@ -76,24 +96,15 @@ body {
     grid-area: passconf;
 }
 
-
-/* .button-submit {
-    align-content: center;
-    grid-area: btn;
-    background-color: #fd9b3f !important;
-    border: none;
-    margin-top: -20%;
-    width: 50% !important; 
-} */
-
 .actual-button {
     align-content: center;
-    position: absolute;
+    position: relative;
     grid-area: btn;
     background-color: #fd9b3f !important;
     border: none;
-    width: 50% !important; 
+    width: 30vw; 
     bottom: 5%;
+    left: 50%;
 }
 
 
@@ -107,22 +118,22 @@ body {
 div h2 {
     color: #f59928;
     text-align: right;
-    position: relative;
-    font-size: 35px;
+    position: static;
+    font-size: 3rem;
     font-family: 'Arvo';
     font-weight: bold;
-    margin-top: 3%;
-    margin-right: 43%;
+    margin-top: 2%;
+    margin-right: 40%;
 }
 
 .login-link {
     grid-area: link;
     display: inline-block;
-    position: absolute;
+    position: relative;
     bottom:15%; 
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 950px) {
     .card {
         display: flex;
         flex-direction: column;
@@ -143,80 +154,98 @@ div h2 {
 
     .form {
         display: grid;
-        overflow: scroll;
+        position: absolute;
         justify-items: center;
         align-items: start;
         /* grid-template-columns: repeat(2, 2fr); */
-        row-gap: 25%;
+        row-gap: 10%;
         column-gap: auto;
         grid-auto-rows: minmax(5%, 10%);
-        margin-top: 10%;
-        grid-template-areas: 'first last'
-                            'email email' 
+        margin-top: 5%;
+        overflow: scroll;
+        grid-template-areas: 'first first'
+                            'last last' 
+                            'email email'
+                            'img img'
                             'pass pass' 
                             'passconf passconf'
+                            'values values'
+                            'descript descript'
                             'link link'
-                            '. . '
+                            '. .'
                             'btn btn' ;
     }
     
     
     .firstname {
-        max-width: 65%;
+        width: 30vw;
         grid-column: 1/2;
         grid-area: first;
-        margin-left: 15%;
     }
     
     .lastname {
-        max-width: 65%;
+        width: 30vw;
         grid-column: 1/2;
+        margin-left: 35vw;
+        margin-right: 35vw;
         grid-area: last;
-        margin-right: 20%;
     }
     
     .emailaddress {
         align-content: center;
-        width: 75% ; 
-        grid-column: 1/3;
+        width: 30vw;
+        grid-column: 1/2;
+        margin-left: 35vw;
+        margin-right: 35vw;
         grid-area: email;
     }
     
+    .image {
+        grid-area: img;
+        width: 35%;
+        margin-left: 14%;
+        margin-top: 3%;
+    }
     .password {
         align-content: center;
-        width: 75% ;  
-        margin-top: 3%;
+        width: 35%;
+        margin-left: 3%;  
         grid-area: pass;
     
     }
-    
+
     .confirm-password {
         align-content: center;
-        width: 75% ;
+        width: 35%;
+        margin-left: 3%;
         grid-area: passconf;
     }
     
-    
-    /* .button-submit {
-        grid-area: btn;
-        background-color: #fd9b3f !important;
-        border: none;
+    .values {
+        grid-area: values;
         align-content: center;
-        width: 50% !important; 
-        margin-top: -40%;
-    } */
-
+        width: 35%;
+        margin-left: 35%;
+        margin-right: 32.5%;
+    }
+    
+    .description {
+        grid-area: descript;
+        width: 35%;
+        margin-left: 2%;
+    }
+    
     .actual-button {
         align-content: center;
-        position: absolute;
         grid-area: btn;
         background-color: #fd9b3f !important;
         border: none;
-        width: 50% !important; 
-        bottom: 5%;
+        width: 30vw; 
+        bottom: 15%;
+        margin-left: 67%;
+
     }
-
-
+    
     
     .button-submit:hover {
         transition: all 200ms ease-in-out;
@@ -228,19 +257,18 @@ div h2 {
     div h2 {
         color: #f59928;
         text-align: right;
-        position: relative;
-        font-size: 35px;
+        position: static;
+        font-size: 3rem;
         font-family: 'Arvo';
         font-weight: bold;
-        margin-top: 3%;
-        margin-right: 43%;
+        margin-top: 2%;
+        margin-left: 30%;
+        margin-right: 35%;
     }
     
     .login-link {
         grid-area: link;
         display: inline-block;
-        position: absolute;
-        bottom:15%; 
     }
     
 }
