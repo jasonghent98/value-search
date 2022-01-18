@@ -4,7 +4,7 @@ import classes from '../../CssComponents/Register.module.css'
 import { Link, useHistory } from 'react-router-dom';
 
 // import signup functionality to pass in to onSubmit handler 
-import { useAuth,  AuthProvider } from '../../Contexts/AuthContext'
+import { useAuth} from '../../Contexts/AuthContext'
 
 const Register = (props) => {  
     // state for listening to input fields
@@ -24,7 +24,7 @@ const Register = (props) => {
     const [isLoading, setIsLoading] = useState(false);
 
     // pull signUp function from the useAuth export
-    const { signUp } = useAuth();
+    const { signUp, currentUser } = useAuth();
 
     // useHistory hook to redirect after register
     const history = useHistory();
@@ -52,6 +52,7 @@ const Register = (props) => {
                 description.current.value
                 )
             history.push('/searches')
+            console.log(currentUser)
         } catch (error) {
             setError('Failed to create an account');
             console.log(error)

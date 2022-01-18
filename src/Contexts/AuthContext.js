@@ -24,14 +24,15 @@ export const AuthProvider = (props) => {
                     password,
                     img,
                     values,
-                    description
+                    description,
+                    uid: user.user.uid
                 })
-        
+                setCurrentUser(user);
+                return;
             })
         } catch (error) {
             console.log(error, 'from authContext.js')
         }
-        console.log('hello')
     }
 
     const login = (email, password) => {
@@ -61,6 +62,7 @@ export const AuthProvider = (props) => {
             setCurrentUser(user)
             setIsLoading(false)
         })
+        console.log('tracking current user')
         return observer;
     }, [])
 

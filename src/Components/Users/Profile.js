@@ -1,15 +1,17 @@
 import Card from '../../Layout/Card';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
 import classes from '../../CssComponents/Profile.module.css'
 import { Button } from 'react-bootstrap'
 import {profileImg} from '../../Assets/Placeholder'
 import Header from '../../Layout/Header';
 import { useAuth } from '../../Contexts/AuthContext';
+import firebase from '@firebase/app-compat';
 
 // import storage API to store photos (still not working)
-import { storage } from '../../API/Firebase'
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@firebase/storage'
+import { storage, userRef, db } from '../../API/Firebase'
+import { doc, getDoc, onSnapshot, query, where } from '@firebase/firestore';
+import { getDownloadURL, ref, uploadBytes, uploadBytesResumable, } from '@firebase/storage'
 import axios from 'axios'
 
 const Profile = () => {
@@ -26,6 +28,7 @@ const Profile = () => {
         console.log(file);
     }
 
+    console.log(currentUser.uid);
 
     // const photoUploadHandler = async () => {
     //     if (!file) return;
@@ -55,7 +58,28 @@ const Profile = () => {
 
     //  PART 1:
     // we have access to the currentUser object once the user signs in and navigates to the the profile page. The profile page needs 
-    // an async function that submits a req to firestore, searching for the doc that matches the currentUser.email
+    // an async function that submits a getDoc req to firestore, searching for the doc that matches the currentUser.email
+
+    // we need to find the doc that pertains to the currentUser so that we can retrieve its relative path to input to doc()
+
+    const matchCurrentUserDoc = query(userRef, where('uid', '===', currentUser.uid));
+    console.log(matchCurrentUserDoc)
+
+    console.log(currentUser.auth.currentUser)
+
+    const fetchProfile = async () => {
+        // search for the document that pertains to the current user in userRef 
+        const docRef = doc(userRef, '/SUpx2DpJwJmqgC8JPxk1' );
+        console.log(docRef)
+        const findMatch = getDoc(docRef).then(doc => {
+            console.log(doc.data())
+        });
+    }
+
+
+    useEffect(() => {
+        fetchProfile();
+    },[])
 
     // within the fetch async function, we need to save the response to a variable and convert to it to a JS object. We then 
     // should return the response variable

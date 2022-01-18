@@ -15,7 +15,6 @@ const Header = props => {
         try {
             await logout();
             history.push('/login');
-            console.log('logout successful', currentUser)
         } catch (error) {
             setError('log out failed.')
             console.log(error);
