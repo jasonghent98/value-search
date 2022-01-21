@@ -66,11 +66,12 @@ const SearchFormContainer = props => {
 
         <Form className={classes['form-search']} onSubmit={onSearchHandler}>
             <Row className="align-items-center">
-            <div className={classes['search-form-input']}>
+            <div className={classes['job-input']}>
                 <Col xs="auto">
                 <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                  Position
                 </Form.Label>
+                <InputGroup className="mb-2">
                 <Form.Control
                     className={`mb-2 ${classes['input1']}`} 
                     id="inlineFormInput"
@@ -78,13 +79,15 @@ const SearchFormContainer = props => {
                     ref={jobInputRef}
                     onChange={props.onChangeJob}
                 />
+                </InputGroup>
                 </Col>
+            </div>
+            <div className={classes['values-input']}>
                 <Col xs="auto">
                 <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
                 Values
                 </Form.Label>
                 <InputGroup className="mb-2">
-                   
                 <FormControl id="inlineFormInputGroup"
                 placeholder="Values/Keywords"
                 onChange={props.onChangeValue}
@@ -94,9 +97,11 @@ const SearchFormContainer = props => {
                 </InputGroup>
                 </Col>
             </div>
+            <div className={classes['submit']}>
                 <Button className={classes['button-submit']} type="submit">
                     Search Jobs
-                </Button>   
+                </Button>  
+            </div> 
             </Row>
         </Form>    
     </div>
