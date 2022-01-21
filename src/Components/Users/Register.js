@@ -2,6 +2,8 @@ import React, {useState, useRef} from 'react'
 import { Form, Col, Row, InputGroup, FormControl, Button, NavLink, Alert } from 'react-bootstrap';
 import classes from '../../CssComponents/Register.module.css'
 import { Link, useHistory } from 'react-router-dom';
+import { ref, uploadBytes } from 'firebase/storage';
+import { storageRef } from '../../API/Firebase';
 
 // import signup functionality to pass in to onSubmit handler 
 import { useAuth} from '../../Contexts/AuthContext'
@@ -20,6 +22,7 @@ const Register = (props) => {
     const img = useRef();
     const values = useRef();
     const description = useRef();
+    const title = useRef();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -32,10 +35,6 @@ const Register = (props) => {
     // listen handler for /register
     const onRegister = async (event) => {
         event.preventDefault();
-        // setEmail(event.target.value)
-        // setPassword(event.target.value)
-        // setConfirmPassword(event.target.value)
-
         if (password.current.value !== confirmPassword.current.value) {
             return setError('Passwords do not match!')
         }
@@ -49,8 +48,11 @@ const Register = (props) => {
                 password.current.value, 
                 img.current.value,
                 values.current.value,
-                description.current.value
+                description.current.value,
+                title.current.value
                 )
+            const reference = ref(storageRef, img.current.value);
+            await uploadBytes(reference, img.current.value);
             history.push('/searches')
             console.log(currentUser)
         } catch (error) {
@@ -130,6 +132,16 @@ const Register = (props) => {
                     type="text" 
                     ref={description}
                     placeholder="Experience?" 
+                    onChange={props.onEmailChange} />
+                </Form.Group>
+                </div>
+                <div className={`mb-3 ${classes['title']}`} >
+                <Form.Group controlId="title">
+                    <Form.Label>What is your current title?</Form.Label>
+                    <Form.Control 
+                    type="text" 
+                    ref={title}
+                    placeholder="Current Title" 
                     onChange={props.onEmailChange} />
                 </Form.Group>
                 </div>

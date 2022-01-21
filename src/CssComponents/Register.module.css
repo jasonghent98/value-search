@@ -39,6 +39,7 @@ body {
                         'passconf passconf'
                         'img values'
                         'descript descript'
+                        'title title'
                         'link link'
                         '. .'
                         'btn btn' ;
@@ -78,6 +79,12 @@ body {
 
 .description {
     grid-area: descript;
+    width: 70%;
+    height: 10%;
+}
+
+.title {
+    grid-area: title;
     width: 70%;
     height: 10%;
 }

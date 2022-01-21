@@ -88,7 +88,7 @@ export const dummyDataToFirebase = async() => {
 
 // create a root reference
 
-export const storage = getStorage(app);
+export const storageRef = getStorage(app);
 
 
 

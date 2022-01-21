@@ -11,7 +11,7 @@ import firebase from '@firebase/app-compat';
 // import storage API to store photos (still not working)
 import { storage, userRef, db } from '../../API/Firebase'
 import { doc, getDoc, getDocs, onSnapshot, query, where, collection } from '@firebase/firestore';
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable, } from '@firebase/storage'
+import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from '@firebase/storage'
 import axios from 'axios'
 
 const Profile = () => {
@@ -36,47 +36,12 @@ const Profile = () => {
         console.log(file);
     }
 
-
-    // const photoUploadHandler = async () => {
-    //     if (!file) return;
-    //     // create a ref to the storage location
-    //     const storageRef = ref(storage, `/files/${file.name}`)
-    //     const uploadData = await uploadBytes(storageRef, file);
-    //     console.log(uploadData)
-
-
-    //     uploadTask.on('state_changed', (snapshot) => {
-    //         const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-    //         console.log(prog);
-    //         setProgress(prog);
-    //     }, error => console.log(error), 
-    //         () => getDownloadURL(uploadTask.snapshot.ref)
-    //         .then(url => console.log(url))) 
-        
-    // }
-
-    // const onSubmitPhoto = event => {
-    //     photoUploadHandler(file);
-    // }
-
     const toEditPage = () => {
         history.push('/edit');
     }
 
-    //  PART 1:
-    // we have access to the currentUser object once the user signs in and navigates to the the profile page. The profile page needs 
-    // an async function that submits a getDoc req to firestore, searching for the doc that matches the currentUser.email
-    // within the fetch async function, we need to save the response to a variable
-
-    // convert the response object into 
-
+//  fetch profile data to display
     const fetchProfile = async () => {
-        // search for the document that pertains to the current user in userRef 
-        // const docRef = doc(userRef, '/SUpx2DpJwJmqgC8JPxk1' );
-        // console.log(docRef)
-        // const findMatch = getDoc(docRef).then(doc => {
-        //     console.log(doc.data())
-        // });
         setIsLoading(true);
         const q = query(collection(db, "userData"), where("uid", "==", currentUser.uid))
         const response = await getDocs(q).then(snapshot => {return snapshot.docs[0].data()});
@@ -89,8 +54,6 @@ const Profile = () => {
         setImg(response.img);
     }
 
-
-
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal
@@ -100,12 +63,6 @@ const Profile = () => {
         }
     },[])
 
-    // PART 2:
-    // once we have the response we need as a JS object on this component, we should console.log to make sure it has all
-    // the fields we need
-
-    // From there, we can destructure the object into individual variables and then add those variables as the values for the 
-    // value attribute in each respective HTML element.
 
     return (
         <div className="body">
