@@ -1,5 +1,5 @@
 import Card from '../../Layout/Card';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useHistory } from 'react-router-dom';
 import classes from '../../CssComponents/Profile.module.css'
 import { Button } from 'react-bootstrap'
@@ -10,7 +10,7 @@ import firebase from '@firebase/app-compat';
 
 // import storage API to store photos (still not working)
 import { storage, userRef, db } from '../../API/Firebase'
-import { doc, getDoc, onSnapshot, query, where } from '@firebase/firestore';
+import { doc, getDoc, getDocs, onSnapshot, query, where, collection } from '@firebase/firestore';
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable, } from '@firebase/storage'
 import axios from 'axios'
 
@@ -20,6 +20,14 @@ const Profile = () => {
     const [progress, setProgress] = useState(0);
     const {currentUser} = useAuth();
 
+    // ref values
+    const [isLoading, setIsLoading] = useState(false);
+    const [first, setFirst] = useState(null);
+    const [last, setLast] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [values, setValues] = useState(null);
+    const [img, setImg] = useState(null);
+
     const history = useHistory();
 
     const photoClickHandler = event => {
@@ -28,7 +36,6 @@ const Profile = () => {
         console.log(file);
     }
 
-    console.log(currentUser.uid);
 
     // const photoUploadHandler = async () => {
     //     if (!file) return;
@@ -59,30 +66,39 @@ const Profile = () => {
     //  PART 1:
     // we have access to the currentUser object once the user signs in and navigates to the the profile page. The profile page needs 
     // an async function that submits a getDoc req to firestore, searching for the doc that matches the currentUser.email
+    // within the fetch async function, we need to save the response to a variable
 
-    // we need to find the doc that pertains to the currentUser so that we can retrieve its relative path to input to doc()
-
-    const matchCurrentUserDoc = query(userRef, where('uid', '===', currentUser.uid));
-    console.log(matchCurrentUserDoc)
-
-    console.log(currentUser.auth.currentUser)
+    // convert the response object into 
 
     const fetchProfile = async () => {
         // search for the document that pertains to the current user in userRef 
-        const docRef = doc(userRef, '/SUpx2DpJwJmqgC8JPxk1' );
-        console.log(docRef)
-        const findMatch = getDoc(docRef).then(doc => {
-            console.log(doc.data())
-        });
+        // const docRef = doc(userRef, '/SUpx2DpJwJmqgC8JPxk1' );
+        // console.log(docRef)
+        // const findMatch = getDoc(docRef).then(doc => {
+        //     console.log(doc.data())
+        // });
+        setIsLoading(true);
+        const q = query(collection(db, "userData"), where("uid", "==", currentUser.uid))
+        const response = await getDocs(q).then(snapshot => {return snapshot.docs[0].data()});
+        setIsLoading(false);
+        console.log(response)  
+        setFirst(response.firstName);
+        setLast(response.lastName);
+        setDescription(response.description);
+        setValues(response.values);
+        setImg(response.img);
     }
 
 
-    useEffect(() => {
-        fetchProfile();
-    },[])
 
-    // within the fetch async function, we need to save the response to a variable and convert to it to a JS object. We then 
-    // should return the response variable
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal
+        fetchProfile();
+        return () => {
+            controller.abort()
+        }
+    },[])
 
     // PART 2:
     // once we have the response we need as a JS object on this component, we should console.log to make sure it has all
@@ -96,25 +112,21 @@ const Profile = () => {
             <Header/>
                 <Card>
                     <div className="profile-pic-div">
-                        <img src={profileImg} alt="" className={classes['image-profile']} id='photo' />
+                        <img src={img} alt="" className={classes['image-profile']} id='photo' />
                         <input type="file" alt='image' className={classes['file']} id='file' onChange={photoClickHandler}/>
                         <label htmlFor="file" className={classes['upload-btn']} >Choose Photo</label>
                         {/* <button onClick={onSubmitPhoto}>Upload Image</button> */}
                     </div>
 
-                    <h1 className={classes['profile-name']}>Jason Ghent</h1>
+                    <h1 className={classes['profile-name']}>{`${first} ${last}`}</h1>
                     <h3 className={classes['job-title']}><i>IT Technician</i></h3>
-                    <ul className={classes['values-container']} > <h3>Jason's Core Values</h3>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <ul className={classes['values-container']} > <h3>{`${first}'s`} Core Values</h3>
+                        <li>{values}</li>
                     </ul>
                     <label htmlFor="experience"></label>
                     <form action="/edit">
                         <ul className={classes['experience']}> <h3>Relevant Experience</h3>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>{description}</li>
                         </ul>
                         <Button className={classes['update-profile-submit']} variant='primary' onClick={toEditPage}>Edit</Button>
                     </form>
