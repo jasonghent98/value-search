@@ -1,5 +1,5 @@
 
- const companyValuesArr = [
+ export const companyValuesArr = [
   'communication',
   'risk',
   'boldness',
@@ -4053,34 +4053,5 @@
     },
 ]
 
-//  const update = dummyData.map(obj => {
-//   try {
-//     obj.companyValues = 'test';
-//     return console.log(obj)
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   })
-
-
-
-
-// slice(lowerRange, upperRange) on companyValuesArr will randomly slice values that will be apportioned to dummyData
-// the random slice generator will be assigned to obj.companyValues prop
-// loop over all the company in dummyData and randomly assign a slice from companyValuesArr to the obj.companyValues prop
-
-export const updateDbWithNewFieldValues = () => {
-  dummyData.map(obj => {
-  // random num from [0, 20]. This will be lower bound 
-  let lowerRange = Math.floor(Math.random() * 20)
-  // another random num. This will be upper bound [20, 46]
-  let min = 20;
-  let upper = Math.floor(Math.random() * 26)
-  let upperRange = min + upper;
-  // randomly slice the arr for each object and iteration in dummyData
-  let randSlice = companyValuesArr.slice(lowerRange, upperRange);
-  return obj.companyValues = randSlice;
-  })
-}
 
 export default dummyData;
