@@ -84,6 +84,8 @@ export const dummyDataToFirebase = async() => {
   
 }
 
+
+
 // Storage for firebase photos
 
 // create a root reference

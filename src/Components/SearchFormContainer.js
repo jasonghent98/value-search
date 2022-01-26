@@ -2,7 +2,6 @@ import React, {useState, useRef} from 'react'
 import { Form, Row, Col, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
 import classes from '../CssComponents/SearchFormContainer.module.css'
 import Header from '../Layout/Header';
-import RecentSearchesContainer from './RecentSearchesContainer';
 import { useHistory } from 'react-router-dom';
 
 // import current user context to be able to display current user email in a welcome alert
@@ -27,7 +26,7 @@ const SearchFormContainer = props => {
     // const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
     
 
-    // Define a matchValues function that will take in finalizedObject user input. Ultimately, this function will be called inside 
+    // Define a matchValues function that will take in finalizedInput as input. Ultimately, this function will be called inside 
     // the onSearchHandler function with the finalizedObject data
     
     // matchValues function:
@@ -37,6 +36,11 @@ const SearchFormContainer = props => {
 
 // when the form to search for a position is submitted, it needs save input in an object, and call matchValues function
 // 
+
+    const matchValues = async (search) => {
+        // search = finalizedInput in this case
+    }
+
 
     const onSearchHandler = event => {
         event.preventDefault();

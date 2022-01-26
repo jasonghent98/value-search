@@ -1,4 +1,64 @@
 
+ const companyValuesArr = [
+  'communication',
+  'risk',
+  'boldness',
+  'honesty',
+  'persistence',
+  'adaptable',
+  'fairness',
+  'trustworthiness',
+  'accountability',
+  'learning',
+  'customer ',
+  'experience',
+  'passion',
+  'balance',
+  'fun',
+  'discipline',
+  'humility',
+  'ownership',
+  'results',
+  'improvement',
+  'consistency',
+  'leadership',
+  'hard work',
+  'diversity',
+  'development',
+  'opportunity',
+  'innovation',
+  'quality',
+  'teamwork',
+  'simplicity',
+  'collaboration',
+  'networking',
+  'opportunity',
+  'remote',
+  'autonomy',
+  'culture',
+  'diversity',
+  'inclusive',
+  'well-rounded',
+  'idealism',
+  'courage',
+  'unselfishness',
+  'self-Discipline',
+  'self-Respect',
+  'creative',
+  'flexible'
+  ]
+
+
+  // map over all of the dummyData objects and forEach object, randomly assign 5 values to the company from companyValues
+//  dummyData.forEach(obj => {
+//     companyValues.forEach(val => {
+//       val
+//     })
+//  })
+ 
+ 
+ 
+ 
  const dummyData = [
     {
       "Uniq Id": "9be62c49a0b7ebe982a4af1edaa7bc5f",
@@ -3992,5 +4052,35 @@
       "Role": "Sales Executive/Officer"
     },
 ]
+
+//  const update = dummyData.map(obj => {
+//   try {
+//     obj.companyValues = 'test';
+//     return console.log(obj)
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   })
+
+
+
+
+// slice(lowerRange, upperRange) on companyValuesArr will randomly slice values that will be apportioned to dummyData
+// the random slice generator will be assigned to obj.companyValues prop
+// loop over all the company in dummyData and randomly assign a slice from companyValuesArr to the obj.companyValues prop
+
+export const updateDbWithNewFieldValues = () => {
+  dummyData.map(obj => {
+  // random num from [0, 20]. This will be lower bound 
+  let lowerRange = Math.floor(Math.random() * 20)
+  // another random num. This will be upper bound [20, 46]
+  let min = 20;
+  let upper = Math.floor(Math.random() * 26)
+  let upperRange = min + upper;
+  // randomly slice the arr for each object and iteration in dummyData
+  let randSlice = companyValuesArr.slice(lowerRange, upperRange);
+  return obj.companyValues = randSlice;
+  })
+}
 
 export default dummyData;

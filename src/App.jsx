@@ -4,7 +4,6 @@ import appClasses from './App.module.css';
 // React Components
 import Header from './Layout/Header';
 import SearchFormContainer from './Components/SearchFormContainer';
-import RecentSearchesContainer from './Components/RecentSearchesContainer';
 import Home from './Components/Home';
 import Login from './Components/Users/Login';
 import Register from './Components/Users/Register';

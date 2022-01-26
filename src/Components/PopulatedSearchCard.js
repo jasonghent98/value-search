@@ -8,6 +8,7 @@ const PopulatedSearchResult = props => {
     // whenever the matchValue function has been called within the onSearchHandler
 
     // this component will need 
+    console.log(props.valueInput)
 
     return (
         <div>

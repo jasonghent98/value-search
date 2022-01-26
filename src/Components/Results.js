@@ -1,6 +1,5 @@
 import React from 'react'
 import SearchFormContainer from './SearchFormContainer';
-import RecentSearchesContainer from './RecentSearchesContainer';
 import PopulatedSearchResult from './PopulatedSearchCard';
 import classes from '../CssComponents/Results.module.css'
 
