@@ -10,7 +10,6 @@ import { useAuth, AuthProvider } from '../Contexts/AuthContext';
 
 const SearchFormContainer = props => {
     const { currentUser, hideAlert } = useAuth();
-
     const jobInputRef = useRef();
     const valueInputRef = useRef();
     const [jobInputTouched, setJobInputTouched] = useState(false);
@@ -18,6 +17,9 @@ const SearchFormContainer = props => {
     const [isJobValid, setIsJobValid] = useState(false);
     const [isValueValid, setIsValueValid] = useState(false);
     const history = useHistory();
+    const [error, setError] = useState('');
+    const [errorAlert, setErrorAlert] = useState(false);
+    const [welcomeAlert, setWelcomeAlert] = useState(true);
 
     // const notValidJobInput = !jobInputRef.current.value && jobInputTouched
     // const notValidValueInput = !valueInputRef.current.value && valueInputTouched
@@ -41,29 +43,37 @@ const SearchFormContainer = props => {
         setJobInputTouched(true);
         setValueInputTouched(true);
         if (!jobInputRef.current.value) {
-          return;
+            setError('Job Title field must be valid!')
+            return;
         }
         if (!valueInputRef.current.value) {
-          return;
+            setError('Values/Keyword field must be valid!')
+            return;
         }
         const finalizedInput = {
           jobInput: jobInputRef.current.value,
           valueInput: valueInputRef.current.value
         }
-        console.log(finalizedInput)
-       
         setIsJobValid(true)
         setIsValueValid(true)
         history.push('/results')
     
       }
 
+      const closeAlert = () => {
+          setWelcomeAlert(prevState => !prevState);
+      }
+      const closeErrorAlert = () => {
+          setErrorAlert(prevState => !prevState);
+          setError(false);
+      }
+
 
     return (
     <div>
         <Header/>
-        {currentUser && <Alert variant='success' dismissible={true} >Welcome back, {currentUser.email}</Alert>}
-
+        {(currentUser && welcomeAlert) && <Alert variant='success' onClose={closeAlert} dismissible>Welcome back, {currentUser.email}</Alert>}
+        {error && <Alert variant='danger' onClose={closeErrorAlert} dismissible >{error}</Alert>}
         <Form className={classes['form-search']} onSubmit={onSearchHandler}>
             <Row className="align-items-center">
             <div className={classes['job-input']}>

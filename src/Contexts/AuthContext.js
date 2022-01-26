@@ -14,7 +14,7 @@ export const AuthProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [alert, setAlert] = useState(true);
 
-    const signUp = async (firstName, lastName, email, password, img, values, description, title) => {
+    const signUp = async (firstName, lastName, email, password, img, keyValues, description, title) => {
         try {
            return auth.createUserWithEmailAndPassword(email, password).then(async (user) => { 
                 await addDoc(userRef, {
@@ -23,7 +23,7 @@ export const AuthProvider = (props) => {
                     email,
                     password,
                     img,
-                    values,
+                    keyValues,
                     description,
                     title,
                     uid: user.user.uid

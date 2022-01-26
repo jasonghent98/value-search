@@ -17,7 +17,6 @@ import axios from 'axios'
 const Profile = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
-    const [progress, setProgress] = useState(0);
     const {currentUser} = useAuth();
 
     // ref values
@@ -25,7 +24,7 @@ const Profile = () => {
     const [first, setFirst] = useState(null);
     const [last, setLast] = useState(null);
     const [description, setDescription] = useState(null);
-    const [values, setValues] = useState(null);
+    const [value, setValue] = useState(null);
     const [img, setImg] = useState(null);
 
     const history = useHistory();
@@ -46,11 +45,10 @@ const Profile = () => {
         const q = query(collection(db, "userData"), where("uid", "==", currentUser.uid))
         const response = await getDocs(q).then(snapshot => {return snapshot.docs[0].data()});
         setIsLoading(false);
-        console.log(response)  
         setFirst(response.firstName);
         setLast(response.lastName);
         setDescription(response.description);
-        setValues(response.values);
+        setValue(response.keyValues || 'or');
         setImg(response.img);
     }
 
@@ -78,7 +76,7 @@ const Profile = () => {
                     <h1 className={classes['profile-name']}>{`${first} ${last}`}</h1>
                     <h3 className={classes['job-title']}><i>IT Technician</i></h3>
                     <ul className={classes['values-container']} > <h3>{`${first}'s`} Core Values</h3>
-                        <li>{values}</li>
+                        <li>{value}</li>
                     </ul>
                     <label htmlFor="experience"></label>
                     <form action="/edit">
