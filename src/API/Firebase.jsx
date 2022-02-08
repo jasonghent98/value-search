@@ -28,9 +28,7 @@ const firebaseConfig = {
 
   // get a ref to specific collection in the db
   export const userRef = collection(db, "userData");
-  const companyRef = collection(db, "companies");
-  const testRef = collection(db, 'test')
-
+  export const companyRef = collection(db, "companies");
 
   // Retrieves all user data from firebase from appropriate collection
 export const getUserData = async() => {
@@ -46,12 +44,14 @@ export const getUserData = async() => {
 export const getCompanyData = async() => {
   const snapshot = await getDocs(companyRef)
   console.log(snapshot);
-  let companyData = [];
-  snapshot.docs.forEach(doc => {
-    companyData.push({...doc.data(), id: doc.id})
-  })
-  console.log(companyData);
+  snapshot.forEach(doc => console.log(doc))
+  // let companyData = [];
+  // snapshot.docs.forEach(doc => {
+  //   companyData.push({...doc.data(), id: doc.id})
+  // })
+  // console.log(companyData);
 }
+// getCompanyData()
 
 // // function that adds data to user collection
 // export const addData = async () => {
@@ -90,16 +90,10 @@ const updateDbWithNewFieldValues = () => {
   await batch.commit();
   });
 }
-// updateDbWithNewFieldValues();
-
-
-// Storage for firebase photos
 
 // create a root reference
 
 export const storageRef = getStorage(app);
-
-
 
 // FIREBASE AUTHORIZATION INSTANCE
 

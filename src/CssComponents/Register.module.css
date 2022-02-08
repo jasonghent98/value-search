@@ -103,6 +103,10 @@ body {
     grid-area: passconf;
 }
 
+.button-submit {
+    width: 0vw;
+}
+
 .actual-button {
     align-content: center;
     position: relative;
@@ -115,11 +119,11 @@ body {
 }
 
 
-.button-submit:hover {
+/* .button-submit:hover {
     transition: all 200ms ease-in-out;
     cursor: pointer;
-    background-color: #f58800 !important;
-}
+    background-color: #f58800;
+} */
 
 
 div h2 {

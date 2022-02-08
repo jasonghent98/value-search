@@ -19,13 +19,7 @@ const SearchFormContainer = props => {
     const [error, setError] = useState('');
     const [errorAlert, setErrorAlert] = useState(false);
     const [welcomeAlert, setWelcomeAlert] = useState(true);
-
-    // const notValidJobInput = !jobInputRef.current.value && jobInputTouched
-    // const notValidValueInput = !valueInputRef.current.value && valueInputTouched
-
-    // const inputClasses = notValidJobInput || notValidValueInput ? 'form-control-invalid' : '';
     
-
     // Define a matchValues function that will take in finalizedInput as input. Ultimately, this function will be called inside 
     // the onSearchHandler function with the finalizedObject data
     
@@ -35,12 +29,7 @@ const SearchFormContainer = props => {
             // populate the document and all of its fields as a <PopulatedSearchResult> component
 
 // when the form to search for a position is submitted, it needs save input in an object, and call matchValues function
-// 
-
-    const matchValues = async (search) => {
-        // search = finalizedInput in this case
-    }
-
+//
 
     const onSearchHandler = event => {
         event.preventDefault();
@@ -60,9 +49,10 @@ const SearchFormContainer = props => {
         }
         setIsJobValid(true)
         setIsValueValid(true)
-        history.push('/results')
-    
-      }
+        history.push({
+            pathname: '/results',
+            state: {finalizedInput}
+        })
 
       const closeAlert = () => {
           setWelcomeAlert(prevState => !prevState);
@@ -71,13 +61,14 @@ const SearchFormContainer = props => {
           setErrorAlert(prevState => !prevState);
           setError(false);
       }
+    }
 
 
     return (
     <div>
         <Header/>
-        {(currentUser && welcomeAlert) && <Alert variant='success' onClose={closeAlert} dismissible>Welcome back, {currentUser.email}</Alert>}
-        {error && <Alert variant='danger' onClose={closeErrorAlert} dismissible >{error}</Alert>}
+        {(currentUser && welcomeAlert) && <Alert variant='success' onClose={setErrorAlert} dismissible>Welcome back, {currentUser.email}</Alert>}
+        {error && <Alert variant='danger' onClose={setErrorAlert} dismissible >{error}</Alert>}
         <Form className={classes['form-search']} onSubmit={onSearchHandler}>
             <Row className="align-items-center">
             <div className={classes['job-input']}>
