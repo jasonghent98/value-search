@@ -6,9 +6,9 @@ on user profile metrics such as experience and personal values.
 
 I was inspired to built this for two main reasons:
 
-  1. At the time of building the site, I, myself, am in the process of searching for new work/professional opportunities. I noticed 
+  1. At the time of building the site, I am in the process of searching for new work/professional opportunities. I noticed 
   exisitng platforms lacked depth in building out profiles, so I wanted to take it one step further and use personal value systems as 
-  a variable when searching for jobs. Finding a company that aligns with your values and your mission is super important!!
+  a variable when searching for jobs. Finding a company that aligns with your values and your mission is super important.
   
-  2. As with anything, practice makes permanent! This project has taught me a lot about the ins and outs of react.js and how data 
-  flows/is manipulated throughout the framework. I've made a lot of progress in my understanding of react and I still have so much to learn!
+  2. As with anything, practice makes permanent. This project has taught me a lot about the ins and outs of react.js and how data 
+  flows is managed throughout the framework. I've made a lot of progress in my understanding of react and I still have so much to learn.
